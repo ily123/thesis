@@ -1,0 +1,1197 @@
+%https://tex.stackexchange.com/questions/82138/insert-title-page-into-table-of-contents%
+% suppress
+
+\documentclass[12pt,a4paper]{report}
+\usepackage{graphicx}
+\usepackage[margin=1.25in]{geometry}
+\renewcommand{\baselinestretch}{2} 
+\usepackage{amsmath}
+\usepackage{hyperref}
+%\usepackage{showframe}
+
+\usepackage{mathtools}
+\usepackage{setspace}
+
+%\usepackage{sectsty}
+%\chapterfont{\centering}
+
+
+% set up font
+%\usepackage{times}
+%\usepackage{newtxtext,newtxmath}
+
+% control top margin of figures
+%\makeatletter
+%\setlength{\@fptop}{0pt}
+%\makeatother
+%\usepackage{afterpage}
+%\usepackage{flafter}
+
+%\usepackage[section]{placeins}
+
+
+% citation engine
+\usepackage{cite}
+%\bibliographystyle{apalike}
+
+%force figure to appear on separate page
+\usepackage{afterpage}
+
+
+
+\newcommand*{\toccontents}{\@starttoc{toc}} % table of content setting
+
+
+\usepackage[labelfont={bf},labelsep=colon]{caption}
+
+\newcommand{\mychapter}[2]{
+    \setcounter{chapter}{#1}
+    \setcounter{section}{0}
+    \chapter*{#2}
+    \addcontentsline{toc}{chapter}{#2}
+}
+
+
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{spacing}{1}
+	\centering
+	\vspace*{0.8cm}
+	\MakeUppercase{\fontsize{18}{22}\selectfont Function prediction in RNA and proteins} \par
+	\vspace{1.3cm}
+	A Dissertation Submitted to the Faculty of\par
+	\vspace{0.6cm}
+	The Graduate School of Biomedical Sciences\par
+	Baylor College of Medicine\par
+	\vspace{1.3cm}
+	In Partial Fulfillment of the\par
+	\vspace{0.6cm}
+	Requirements for the Degree\par
+	\vspace{0.6cm}
+	of\par
+	\vspace{0.6cm}
+	Doctor of Philosophy\par
+	\vspace{0.6cm}
+	by\par
+	\vspace{2cm}
+	ILYA B. NOVIKOV\par
+	\vspace{2.5cm}
+	Houston, Texas\par
+	\vspace{0.6cm}
+
+	June 3, 2019
+
+	\vfill
+
+% Bottom of the page
+	%{\large \today\par}
+\end{spacing}
+\end{titlepage}
+\addtocounter{page}{1}
+
+
+\begin{center}
+\begin{spacing}{1}
+\addcontentsline{toc}{chapter}{Approvals}
+
+\vspace{5cm}
+\MakeUppercase{\fontsize{12}{22}\selectfont \textbf{Approved by the dissertation committee}} \par
+\vspace{1.5cm}
+\thispagestyle{empty}
+\rule{7cm}{1pt} \par
+Olivier Lichtarge, M.D., Ph.D.\par
+Chair\par
+\vspace{0.5cm}
+\rule{7cm}{1pt} \par
+Tom Cooper, Ph.D.\par
+\vspace{0.5cm}
+\rule{7cm}{1pt} \par
+Edward Nikonowicz, Ph.D.\par
+\vspace{0.5cm}
+\rule{7cm}{1pt} \par
+Timothy Palzkill, Ph.D.\par
+\vspace{0.5cm}
+\rule{7cm}{1pt} \par
+B. V. Venkatar Prasad, Ph.D.\par
+\vspace{0.5cm}
+ \rule{7cm}{1pt} \par
+Lynn Zechiedrich, Ph.D.\par
+
+\vspace{1.5cm}
+\MakeUppercase{\fontsize{12}{22}\selectfont \textbf{APPROVED  BY THE BIOCHEMISTRY AND MOLECULAR BIOLOGY GRADUATE PROGRAM}} \par
+ 
+\vspace{0.75cm}
+\rule{7cm}{1pt} \par
+B. V. Venkatar Prasad, Ph.D.\par
+Director of Graduate Studies\par
+
+\vspace{1.5cm}
+
+\MakeUppercase{\fontsize{12}{22}\selectfont \textbf{APPROVED BY INTERIM DEAN OF THE GRADUATE SCHOOL OF BIOMEDICAL SCIENCES }} \par
+\vspace{0.75cm}
+ \rule{7cm}{1pt} \par
+Adam Kuspa, Ph.D.\par
+\vspace{0.5cm}
+ \rule{7cm}{1pt} \par
+ Date
+\end{spacing}
+\end{center}
+\break
+
+%\toccontents
+
+%\chapter*{Approvals}
+
+\chapter*{\Large Acknowledgments}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+The author gratefully acknowledges Angela Wilkins for key contributions to this work, both in terms of experimental design and conceptualization. Additionally, the author wishes to thank Ben Bachman, Rhonald Lua, David Murciano, Panos Katsonis, and Brigitta Wastuwidyaningtyas for their expertise and helpful feedback.
+
+\chapter*{\Large Abstract}
+
+\addcontentsline{toc}{chapter}{Abstract}
+
+In order to develop novel disease therapies, one must first understand how individual proteins and nucleic acids function within the cell. In practice, function determination consists of two related, but distinct goals. First, given a protein (or nucleic acid) we seek to discover its function relative to the other molecules in the cell. These functions include enzymatic activity, interactions with other macromolecules, structural role, and so on. Second, having discovered the molecule's functional role, we next seek to identify individual residues (or nucleotides) that contribute to it, such as residues that make up catalytic sites and binding interfaces. In this manner, comprehensive functional annotation is a two-step process: we must both determine a molecule's role within the cell, and the role of individual residues within the molecule. In this work, we explore the problem of function annotation from both of these perspectives.
+
+First, we address the problem of functional discrimination in non-coding (nc)RNAs on single-nucleotide level. Functional ncRNA are nucleotide sequences of varied lengths, structures, and mechanisms that ubiquitously influence gene expression and translation, genome stability and dynamics, and human health and disease. Here, to shed light on their functional determinants, we seek to exploit the evolutionary record of variation and divergence read from sequence comparisons. The approach follows the phylogenetic Evolutionary Trace (ET) paradigm, first developed and extensively validated on proteins. Here, we assigned a relative rank of importance to every base in a study of 1070 functional RNAs, including the ribosome, and observed evolutionary patterns strikingly similar to those seen in proteins, namely, (1) the top-ranked bases clustered in the structure. (2) In turn, these clusters mapped functional regions for catalysis, binding proteins and drugs, post-transcriptional modification, and deleterious mutations. (3) Moreover, the quantitative quality of these clusters correlated with the identification of functional regions. (4) As a result of this correlation, smoother structural distributions of evolutionary important nucleotides improved functional site predictions. Thus, in practice, phylogenetic analysis can broadly identify functional determinants in RNA sequences and functional sites in RNA structures, and reveal details on the basis of RNA molecular functions. As example of application, we report several previously undocumented and potentially functional ET nucleotide clusters in the ribosome. This work is broadly relevant to studies of structure-function in ribonucleic acids. Unlike other current methods, ET does not impose size limits on input alignments, and by quantifying divergence with respect to evolutionary history it is more accurate for functional site discrimination than information entropy. This allows ET to be applied, in a practical manner, to full-length alignments of large molecules such as HIV and the ribosome. 
+
+The next problem addressed in this work is that of protein function annotation in the context of the proteome  We present two related approaches for automatically annotating proteins using the popular classification database, the Gene Ontology (GO), as the sole source of input features. Gene Ontology provides functional annotations for proteins by assigning them labels, referred to as GO terms. GO terms describe a protein’s function, role, and location within the cell. We sought to use existing Gene Ontology annotations as the principal source of input data for building predictive models that infer future annotations. In the first approach, we extract the term annotations as a term-protein matrix, and use Non-negative Matrix Factorization (NMF) to suggest novel term-protein annotations. We show that this representation is stable in ten-fold cross-validation, and that it has predictive power in time-stamped trials. In the second approach, we use Resnik semantic similarity to build a pairwise distance matrix for annotated proteins, and then convert the distance matrix into a protein-protein network. To reason on this representation, we label protein nodes with known functions, and then use graph diffusion to propagate the labels to the unlabeled nodes. We show that this graph representation is also stable and self-consistent, and then use time-stamp validation to show that it, too, has predictive power. Together these data show that GO can be readily distilled into a form amenable to automated reasoning, and that it has predictive power.
+
+%\section*{Publications included in thesis}
+%\begin{itemize}
+%	\item \textit{Evolutionary Trace method defines functional sites common to RNA families}. \textbf{In review.} PLOS CB.
+%	\item \textit{Automated reasoning on GO-based networks}. \textbf{In preparation.}
+%	\item \textit{CAFA3 consortium publication}. \textbf{In preparation by CAFA3 organizers.}
+%\end{itemize}
+
+\tableofcontents
+%\listoffigures
+
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures%
+}
+
+\addcontentsline{toc}{chapter}{List of Figures}
+
+%\listoftables
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
+\listoftables%
+}
+\addcontentsline{toc}{chapter}{List of Tables}
+
+
+
+
+
+\pagebreak
+
+\setcounter{chapter}{0}
+
+\chapter{Overview of Functional Non-coding RNA Families}
+%\chapter[Chapter Introduction]{\centering Chapter Title}
+
+%\addcontentsline{toc}{chapter}{Introduction}
+
+\clearpage
+
+One of the greatest scientific achievements of the 20th century is the discovery of the Central Dogma of molecular biology \cite{Crick1958, Crick1970}. As outlined for the first time by Francis Crick, the Central Dogma describes the relationship between 3 major polymer types found in all living systems: deribonucleic acids (DNAs) store genetic information, proteins perform the assorted variety of cellular functions, and ribonucleic acids (RNAs) serve the short-lived intermediate between the two. In this canonical view, RNA was regarded as too fragile to serve as a long-term information repository (due to the reactive 2' hydroxyl), and too invariant (only 4 bases) to perform protein-like functions. Thus, traditional role of RNAs was as a messenger (m)RNA that connects DNA to protein.
+
+However, the notion that RNA can play other protein-like roles appeared almost immediately after the establishment of the Central Dogma \cite{Lehman2010}. This idea gained significant traction in the 1980s when self-splicing introns were discovered in \textit{Tetrahymena} rRNA \cite{Cech1982}, and bacterial RNAse P was confirmed to have a RNA catalytic core \cite{Altman1983}. These molecules featured catalytically-active RNAs that did not encode protein but instead functioned like one. These discoveries paved way for further inquiry into functional non-coding (fnc)RNAs, and led to rapid expansion in the number of known functional RNAs. Today, fncRNAs include several classes such as ribozymes, riboswitches, transfer (t)RNA and ribosomal (r)RNA, microRNAs, small nucleolar (sno)RNAs, small nuclear (sn)RNAs, and the long non-coding (lnc)RNAs.
+
+In more detail, functional RNAs can be categorized into several broad groups. First are the classic RNAs involved in the core aspects of translation. Principally, this group includes ribosomal and transfer RNAs \cite{Beringer2007}. Ribosome is approximately $\frac{2}{3}$ RNA by weight, and RNA serves both as the structural foundation of the ribosome and its catalytic core. Working in tandem with rRNA are the much smaller transfer (t)RNAs, which deliver aminoacids to the ribosome for incorporation into the growing peptide chain. Another RNA machine associated with translation is RNAse P, an enzyme that promotes maturation of tRNAs by cleaving the 5' end of the precursor tRNAs \cite{Altman1983, Alfonso2013}. Likewise, two other families, small nucleolar (sno)RNAs and small nuclear (sn)RNAs, are also closely linked to translation and transcription. SnoRNAs guide post-transcriptional modification of nascent ribosomal RNA (2′-O-ribose methylation and pseudouridylation), which is necessary for rRNA maturation \cite{Mattick2005}. Meanwhile, snRNAs are best known for being a constituent part of the spliceosome, where they appear to guide splice site recognition \cite{Valadkhan2013}.
+
+Another group of classic fncRNAs are the regulatory motifs embedded in untranslated regions of mRNA molecules, most notably riboswitches. Riboswitches are often found in bacterial genes involved in metabolite production \cite{Garst2015}. One representative example is the glmS riboswitch \cite{Klein2006}, located in the 5' UTR of the \textit{glmS} gene that encodes the enzyme responsible for production of glucosamine-6-phosphate (GlcN6P). When concentration of GlcN6P is high, it binds to the the glmS riboswitch inducing it to cleave the \textit{glmS} transcript. In this manner, the riboswitch regulates expression of \textit{glmS}. Other similar regulators include ribozymes \cite{Hammann2012}, such as the hammerhead ribozyme that participates in viral rolling circle replication, and self-splicing introns \cite{Lambowitz2011}. 
+
+Discovered after the classic RNAs were the novel calsses of small regulatory RNAs and long non-coding (lnc)RNAs. Small regulatory RNAs include microRNAs (miRNAs) and small interfering RNAs (siRNA), which regulate gene expression by transcript suppression \cite{Mattick2005}. In their mature form, mi/siRNAs are part of the RNA-induced silencing complex (RISC), mediating RISC binding to mRNA targets that are complementary to the mi/siRNA sequence. Once bound, RISC cleves the mRNA target. There are hundreds of known mi/siRNAs, and they are perhaps best known for their role in development. Finally, the most nascent class of fRNAs are long non-coding RNAs \cite{Mercer2009}. While thousands of putative lncRNAs exist, few have been functionally characterized (most notably \textit{Xist}, which controls inactivation of the X chromosome in mammals), and there is much debate about their mode of function.
+
+Thus, functional non-coding RNAs are diverse, varied, and involved in multiple core functions of the cell. Furthermore, a number of these molecules have already been associated with human disease \cite{pmid25821444, Vulliamy2001, Taft2010, Gutschner2013}. It is important to better understand and modulate these molecules, and to do so we must first understand what determines their function on single-nucleotide level. The traditional experimental methods to solve this problem, such as scanning mutagenesis, scale poorly with the growing number of new fncRNAs discovered every year (Fig \ref{fig:rfam_grow}). Meanwhile, traditional computational methods are dominated by the problem of structure prediction, not functional delineation.
+
+In Chapter 2, we address the problem of predicting functional determinants in these functional non-coding RNAs using Evolutionary Trace (ET), a sequence analysis tool that scans the evolutionary history of a given RNA to identify nucleotides that are likely critical to function. In Chapter 2, we provide a theoretical basis for ET's novel use in fncRNA, examine in detail its application to two fRNA model systems (the hammerhead ribozyme and the ribosome), and show that the method is general across diverse families of fRNAs. We also explore a number of optimization techniques for improving ET's prediction accuracy in RNA, and suggest four novel functional sites in the bacterial ribosome.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+ \vspace{-5in}
+  \includegraphics[width=0.4\textheight]{figures/RNA_fig0.png}
+  \caption[Growth of the Rfam database.]{\textbf{Rfam database, the principle repository for annotated fncRNA families, has been growing rapidly \cite{Kalvari2018}.}}
+  \label{fig:rfam_grow}
+\end{minipage}
+\end{figure}
+
+\chapter[Evolutionary Trace Method Defines Functional Sites Common to RNA Families]{\LARGE Evolutionary Trace Method Defines Functional Sites Common to RNA Families}
+
+This work is under review as Ilya Novikov, Angela Wilkins, and Olivier Lichtarge. (2019) Evolutionary Trace method defines functional sites common to RNA families, \textit{PLOSCB}.
+
+Author contribution: Conceived and designed experiments: IN, AW, OL; Performed the experiments: IN; Analyzed the data: IN, AW. Wrote the paper: IN, AW, OL.
+\clearpage
+\section{Introduction}
+Functional non-coding (fnc)RNAs are a broad class of functional macromolecules that regulate transcription and translation, maintain genome stability \cite{Mattick2006}, and play a role in diseases. They are found across evolution and include both classical as well as several new forms discovered over the past 30 years. The well-known classical RNAs primarily concern translation: they are ribosomal (r)RNA, transfer (t)RNA, small nucleolar (sno)RNA, and the tRNA maturation enzyme RNAse P. The novel RNA classes span self-splicing ribozymes that control viral replication, riboswitches that regulate small molecule metabolism in bacteria, small regulatory RNAs (microRNAs) that regulate mRNA translation in eukaryotes, and, most recently, long non-coding (lnc)RNAs that impact pre- and post-transcriptional gene expression  \cite{Mercer2009}. Thus, functional non-coding RNAs are diverse and contribute significantly to cell metabolism. Critically, fncRNAs have been linked to human disease. For example, mutations in mitochondrial RNAse P are associated with cartilage-hair hypoplasia \cite{Ridanpaa2001}, deletion of promoter that drives expression of HBII-85 snoRNAs contributes to Prader-Willi syndrome \cite{Sahoo2008}, and mutations in hTR, RNA component of DNA telomerase, promote Dyskeratosis congenita \cite{Vulliamy2001}. Furthermore, small regulatory RNA are perturbed in cancer, in cardiovascular diseases, and neurodegenerative disorders \cite{Esteller2011}, and studies have shown that fncRNA expression is significantly disturbed in cancer cell lines \cite{Taft2010}. Long non-coding RNA MALAT1 has been directly linked to metastasis in lung and gastric cancer \cite{Gutschner2013}. These and other fncRNAs represent an entirely new class of druggable targets. Indeed, a number of inhibitors have already been developed to target pathogenic fncRNA, including riboswitches \cite{Qi2016, Howe2015} and the ribosome \cite{Wilson2014}. Given the growing recognition of the role of fncRNA in human health \cite{Naderi-Meshkin2015}, it is important to understand the determinants of function in these molecules.
+
+To understand fncRNA structure and function and target them for therapy, a central question is which nucleotides in a given molecule contribute to function? Answers have thus far relied on structure determination and targeted mutagenesis. First, secondary or tertiary RNA structures are solved by any number of wet-lab techniques, such as x-ray crystallography, NMR, and enzymatic or chemical probing \cite{Weeks2010}, or via in silico algorithms \cite{Markham2008, Parisien2008, Reeder2006, Zuker2003, Miao2017}. Based on the structure model, specific nucleotides may then be targeted for mutagenesis, as in \cite{Nelson2008}. This classical experimental paradigm is resource intensive and contingent on suitable biochemical assays, cell lines, and viable mutants. 
+
+In protein research, the similar challenge of identifying functionally important amino acid residue had been effectively addressed by the predictive computational methods, most notably Evolutionary Trace, which is the single most-validated approach \cite{Wilkins2012}. However, in RNA research, there are currently no well-validated computational alternatives to the experimental paradigm (one notable exception is the protein-centric ConSurf web-tool that recently added the ability to score conservation of nucleic acid sequences \cite{Ashkenazy2016}, but did not provide thorough validation for RNA). Because the field is so nascent, most RNA sequence analysis tools, such as GERP++ and PhastCons \cite{Davydov2010, Siepel2005}, are used primarily in genomic context to identify novel exons or ncRNAs, and in practice, they are not applicable to single-nucleotide functional analysis of individual RNA molecules. 
+
+Furthermore, the traditional purpose of sequences analysis in RNA has been to model secondary and tertiary structure via detection of canonical Watson-Crick base pairing. The first studies of homologue co-variation led to secondary structures of tRNA \cite{Levitt1969}, 5S rRNA \cite{fox_woese_5s_nature1975}, and self-catalytic introns \cite{Westhof1990}. Structure prediction with aid of RNA sequence analysis further evolved with context-free grammar algorithms [27], and the recent advances in the field deal with prediction of non-canonical long-range tertiary contacts in larger molecules \cite{Weinreb2016}. Unlike ET, these methods are primarily aimed at structure prediction, and do not directly provide analysis of evolutionary importance on single-nucleotide level.
+
+To address this need, we sought to adapt Evolutionary Trace \cite{Lichtarge1996, Mihalek2004} to predict functional nucleotides in RNA from their evolutionary history. Evolutionary Trace is a method to identify functional important residues in proteins. It correlates sequence variations with evolutionary divergences in order to rank sequence positions as more (or less) important to function (\ref{fig:et_model}). In so doing, ET makes two assumptions. First, that sequence variations during evolution and speciation are akin to sampling the sequence-function space via wet lab mutations. Second, that the depth of divergence between two sequences is commensurate with their functional difference, that is, this depth is a quantitative assay of functional distance. If so, a systematic tally of the variations, at any given position of a multiple sequence alignment, that track mostly with deep (or small) phylogenetic divergence, enable ET to assign a greater (or lesser) relative rank of evolutionary importance to each sequence position. More recently, it was recognized that such systematic coupling of variations in sequence space (genotype) with variations in evolution (fitness space) can be formally recast as a gradient of the evolutionary mapping of genotypes onto the fitness landscape \cite{Katsonis2014}. Viewing ET as the gradient of the evolutionary landscape, presumably a foundational feature of biology, helps explain that the relatively simple in silico process of tracing phylogenetic trees and alignments of homologous sequences (see Methods) leads to varied and useful insights into the molecular basis of protein function. By targeting mutations to top-ranked sequence positions (so-called ET residues), ET-guided studies identify protein-protein interaction interfaces \cite{Lichtarge2003, Rajagopalan2006, Res2005}, allosteric \cite{Rodriguez2010} and ligand binding sites \cite{Raviscioni2006}, recode ligand specificity \cite{Rodriguez2010}, designed functionally-active peptides \cite{Gu2005}, and on a structural proteomic scale computationally predict the function of orphan proteins \cite{Erdin2013, Kristensen2008}. 
+
+
+
+%\begin{figure}
+ %\includegraphics[width=\linewidth]{figures/dummy-figure.png}
+  %\caption[Number of annotated functional RNAs has been growing rapidly.]{\textbf{Number of annotated functional RNAs has been growing rapidly.} CAPTION.}
+  %\label{fig:rfam_growth}
+%\end{figure}
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-2.5in}
+  \includegraphics[width=\linewidth]{figures/Fig1.png}
+  \caption[The Evolutionary Trace model.]{\textbf{The Evolutionary Trace model.} For a set of homologues, ET quantifies correlation between phylogenetic tree divergence and sequence variation. ET nucleotides, where the correlation is highest, are considered evolutionarily- and functionally-important. They cluster on the structure and predict functional sites. Furthermore, the quality of structural clustering by ET nucleotides can be measured, and then optimized to improve functional site prediction.}
+  \label{fig:et_model}
+\end{minipage}
+\end{figure}
+
+
+%\begin{figure}
+ % \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/dummy-figure.png}
+  %\caption[Analytical derivation of expected clustering weight agrees with randomized simulation.]{\textbf{Analytical derivation of expected clustering weight agrees with randomized simulation.} CAPTION.}
+%  \label{fig:randomized_clust_weght}
+%\end{figure}
+
+A natural question is whether similar insights might be gathered for RNA by translating the ET formalism from amino acids sequences to nucleotide sequences. This is readily testable since in proteins top-ranked ET residues have well established general properties that underpin the method’s successes: (1) ET can rank amino acid sequence positions from most to least important, such that those in top 30th percentile are called ET residues. (2) These ET residues cluster in the three-dimensional structure of the molecule \cite{Madabushi2002} and (3) overlap its functional sites \cite{Lichtarge2003}. (4) Critically, the quality of the structural clustering of ET residues informs with quality of functional site overlap \cite{Mihalek2006-1}. And finally, (5) the quality of overlap can be improved via optimized sequence selection that maximizes ET clustering \cite{Mihalek2006-1} and minimizes rank differences of neighboring residues (a structural smoothing of ET ranks) \cite{Wilkins2013}. 
+
+Therefore, to generalize the use of ET to RNA sequences, we sought to test whether ET nucleotides exhibit these five properties. We applied our tests to a representative set of RNA molecules from the Rfam database \cite{Kalvari2018} (Fig \ref{fig:rfam_pie}A), and found that ET bases obey the same general rules as ET residues. In particular, we focused on a subset of well-characterized RNAs with known tertiary structures (Fig \ref{fig:rfam_pie}B), which account for 7\% of our test set and are also fairly representative of overall RNA biology. In practice, the data show that Evolutionary Trace can be readily applied to multiple sequence alignments of homologous fncRNAs to identify nucleotides of functional importance. 
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-0.5in}
+\centering
+  \includegraphics[scale=0.85]{figures/Fig2.png} %[width=\textwidth,height=\textheight,keepaspectratio]
+  \caption[Rfam test set represents a broad selection of functional RNAs.]{\textbf{Rfam test set represents a broad selection of functional RNAs.}  Shown in (A) are Rfam families we used in our test set. In (B) is a subset of Rfam test families that map to high-resolution structures in the Protein Data Bank (PDB), allowing us to study three-dimensional clustering by ET nucleotides.}
+  \label{fig:rfam_pie}
+  \end{minipage}
+\end{figure}
+
+
+\section{Evolutionary Trace Theory and Methods}
+\subsection{Measuring Nucleotide Importance with Real-value ET}
+To measure nucleotide importance, we use Evolutionary Trace (\ref{fig:et_model}). The first step in the ET analysis is to construct a representative multiple sequence alignment (MSA) for the query sequence and its homologues. Here, we use the manually-curated seed alignments from the Rfam database \cite{Kalvari2018}, that each have at least 10 canonical sequences. The alignment is used to construct a UPGMA phylogenetic tree, and the two are then traced. ET iterates through the sequence columns and assigns a rank based on how closely the sequence variation within the column correlated with tree branching. The first-generation ET algorithm \cite{Lichtarge1996, Lichtarge2003} expresses the rank as:
+
+\begin{equation*} \label{eq:integer_et_equation}
+r_i = 1+\sum_{n=1}^{N-1} \delta(n) \begin{cases}
+\delta(n) = 0 &\text{if node $n$ is invariant in every group $g$}\\
+\delta(n) = 1 &\text{otherwise}
+\end{cases}
+\tag{1}
+\end{equation*}
+% \eqref{eq:integer_et_equation}
+
+where $r_i$ is the rank of the residue at position $i$, $N$ is the total number of sequences in the tree, and $N-1$ is the number of nodes. To compute $r_i$, we iterate through every node $n$ staring with one closest to the root ($n=1$), and divide the sequences in the alignment into subgroups $g$ based on the topology of the tree. Because the tree is binary, at node level $n$, the tree is divided into $g=n$ groups. We assign 0 to $\delta(n)$ if the residue at position $i$ is invariant within all sequence groups $g$, and 1 otherwise. Thus, evolutionarily important nucleotides that are fixed within major branches will receive a lower absolute rank $r_i$ than residues that continue to vary as the tree is traversed.
+
+This approach produces integer ranks, and suffers from treating each node as equally important, which is not always true. To address this, we developed real-value ET (rvET) \cite{Wilkins2012, Mihalek2004}, an extension of the basic method, that uses information entropy to weight phylogenetic branches according to their sequence conservation:
+
+\begin{equation*} \label{eq:realval_et_equation}
+r_i = 1+\sum_{n=1}^{N-1} \frac{1}{n} \sum_{g=1}^n\bigg\{-\sum_{a=1}^{20}f_{ia}^{g}lnf_{ia}^{g}\bigg\}
+\tag{2}
+\end{equation*}
+
+where $f_{ia}^{g}$ is frequency of an amino (or nucleic) acid $a$ found within the sequence group $g$. Now, as we traverse the tree, we sum up and then average the information entropy for each of the sub-alignments $g$ observed when we split the tree into $n$ nodes. This allows us to produce better resolved ranks $r_{i}$ that are more resistant to sequence inconsistencies, while still taking into account the phylogenetic history of the tree. In this manner, we arrive at a relative ranking of evolutionary importance for every position in the alignment. In practice, we normalize ranks into percentile ranks, or coverage. The coverage of 5\% includes the top 5\% of the most highly ranked nucleotides, and so on. Here, we refer to ET nucleotides as nucleotides within 35\% ET rank coverage.
+\subsubsection{Measuring Nucleotide Clustering and Overlap}
+To measure structural clustering by ET nucleotides, we developed the concept of Selection Clustering Weight (SCW), described in detail in \cite{Mihalek2003}. Briefly, for a set of nucleotides $S$, Selection Clustering Weight, $w$, is the number of structural contacts formed by the members of $S$. To calculate $w$, we present the structure in form of adjacency matrix $A$:
+\begin{equation*} \label{eq:et_adj_matrix}
+A(i,j) = \begin{cases}
+1 &\text{if $d(i,j) < 4\text{\AA}$}\\
+0 &\text{if $d(i,j) > 4\text{\AA}$}
+\end{cases}
+\tag{3}
+\end{equation*}
+
+where $d$ is the distance between any two nucleotides $i$ and $j$, and a contact is denoted by $A(i, j)=1$ if $d$ is 4{\AA} or less. Using selection function $S(x)$ (which returns 0 if nucleotide $x$ is not found in selection, and 1 otherwise), we iterate over $A$ and calculate $w$: 
+\begin{equation*} \label{eq:zclust_equation}
+\omega = \sum_{i>j}^{L}S(i)S(j)A(i,j)
+\tag{4}
+\end{equation*}
+
+To assess the statistical significance of $\omega$, we compare it to the mean expected clustering weight, $\langle\omega\rangle$, by a random set of nucleotides of the same size as $S$. We express the difference between clustering weight of nucleotide set $S$, and random nucleotides, in form of a clustering z-score $z_c$:
+\begin{equation*} \label{eq:zclust_equation}
+z_c = \frac{\omega-\langle\omega\rangle}{\sigma}
+\tag{5}
+\end{equation*}
+
+where $\sigma$ is the standard deviation of $\langle\omega\rangle$. Both $\langle\omega\rangle$ and $\sigma$ can be calculated analytically, as explained in \cite{Mihalek2003}. Using this procedure, we calculated the statistical significance of clustering by ET nucleotides.
+
+Similar to clustering z-score, we introduce overlap z-score $z_o$ to assess how well ET nucleotides predict functionally-relevant sites. Given a pre-defined set of functional nucleotides of size $M$ and a set of ET nucleotides of size $n$ in a molecule of length $N$, we can use hypergeometric distribution to calculate mean expected overlap between the two:
+\begin{equation*} \label{eq:hg_exp_equation}
+m  = n\frac{M}{N}
+\tag{6}
+\end{equation*}
+
+where m is the number of functional nucleotides one would expect in a selection of size n, if selection was random. The standard deviation of m is given by:
+\begin{equation*} \label{eq:hg_sigma_equation}
+\sigma  = \sqrt{\frac{nM(N-M)(N-n)}{N^2(N-n)}}
+\tag{7}
+\end{equation*}
+
+If the actual observed number of functional nucleotides in selected set is k, we can compute the z-score of overlap  $z_o$ as:
+\begin{equation*} \label{eq:zolap_equation}
+z_o  = \frac{k-m}{\sigma}
+\tag{8}
+\end{equation*}
+
+Finally, in practice, we calculate both clustering and overlap z-scores over the entire range of ET ranks.  We cumulatively bin nucleotides according to their ET rank, then measure the z-scores in each bin. As we are interested in top-ranked nucleotides, we average the z-scores in bins between 0 and 35\% rank percentile (0 to 35\% ET coverage), to get a single measure, $z_{c}^{35\%}$ or $z_{o}^{35\%}$. Note also that the maximum possible number of unique ranks and rank bins is $L$, the length of the query sequence. However, multiple nucleotides can share the same rank, which leaves a number of unique rank bins empty (not assigned to any nucleotides). We still incorporate these bins into the cumulative measure, by implicitly assigning to them the z-score from the closest valid bin.
+
+\subsubsection{Receiver Operating Characteristic Curve}
+
+In addition to $z_{o}$, we will also provide the area under the Receiver Operating Characteristic (ROC) curve as a measure of ET accuracy. ROC curve is a standard tool for reporting accuracy of binary classification algorithms, and we use it here to provide redundancy.
+
+The goal of the ROC curve is to test whether ET assigns high scores to nucleotides we know \textit{apriori} to be functional  (our 'gold standard' reference set). To construct the ROC curve for the ET analysis of a given molecule, we first sort the nucleotides in the molecule according to their ET score, from most to least important. We then traverse the sorted list in the direction of decreasing ET, and treat each ET unique score as a threshold that determines if a nucleotide is functional. Nucleotides ranked within the threshold are positive predictions $P$ (predicted as functional), while nucleotides below the threshold are considered negative predictions $N$ (predicted as devoid of function). We measure the accuracy of this classification at each threshold level, by calculating the True Positive Rate (TRP) and the False Positive Rate (FPR):
+
+\begin{equation*} \label{eq:tpr_fpr}
+  \begin{aligned}
+TPR = TP / P = TP / (TP + FP) \\
+FPR = FP / N = FP / (FP + TN)
+  \end{aligned}
+\tag{9}
+\end{equation*}
+
+where true positives (TP) are the nucleotides within the threshold that are correctly predicted as functional (they are in the 'gold standard' reference set), while False Positives (FP) are all nucleotides above the threshold that turned out to actually be negative. As we move through the list and evaluate each ET threshold, we plot TRP on the y-axis, and FPR on the x-axis.
+
+If ET is robust at discriminating between functional and non-functional nucleotides, the TPR will increase at a faster rate than FPR, resulting in a ROC curve that is biased toward the upper left corner of the plot (where TPR = 1, and FPR = 0). A perfect predictor, then, will have an area under the ROC curve of 1. A predictor that lacks discriminatory power (positives and negatives receive similar scores) will produce a curve with AUC of 0.5. We use the area under the ROC curve (AUC) as a redundant evaluation metric in this chapter.
+
+\subsection{Measuring ET Smoothness}
+In addition to quantifying ET clustering as clustering z-score, we also defined a global measure of clustering we refer to as ET smoothness, $SMT$. $SMT$ reflects how smoothly ET ranks are distributed over the structure by tallying the rank difference of neighboring nucleotides: 
+
+\begin{equation*} \label{eq:smt_equation}
+SMT  = \sum_{i,j} A(i,j)(x_i - x_j)^2
+\tag{10}
+\end{equation*}
+where $A$ is the adjacency matrix as described prior, and $x$ is the ET rank of the nucleotides. In the original work addressing smoothnes \cite{Wilkins2013}, we established that evolution tends to minimize difference in evolutionary importance between neighboring residues, because residues exert selective pressure on each other. 
+
+\subsection{Rfam Test Set of Homologous RNA Families}
+
+We traced seed alignments of 1070 families from the Rfam database, each family with a minimum of 10 unique canonical sequences (Fig \ref{fig:rfam_pie}A). Of these, 71 families with available high-resolution structures made up the structured test set that we tested for ET three-dimensional clustering (Fig \ref{fig:rfam_pie}B). Additionally, for a set of 15 families, we compiled a ‘golden standard’ to test for overlap with ET nucleotides.
+
+\subsection{ET Code Availability}
+Evolutionary Trace code, compiled as a command-line utility, along with an example is available at \url{https://github.com/LichtargeLab/RNA_ET_ms}.
+
+\section{Results and Discussion}
+\subsection{Case study 1: Hammerhead Ribozyme}
+A first test of ET was the hammerhead ribozyme, a cis-cleaving structure most commonly found in plant viruses, which participates in rolling circle replication by cleaving the nascent transcript \cite{Hammann2012, Fedor2009}. The hammerhead motif is not confined to viruses, and new members of the family were recently described in bacteria and eukaryotes \cite{Hammann2012}, where they may support tRNA and siRNA processing, ORF remodeling, and RNAi inhibition. The full-length hammerhead sequence is 60 nucleotides long, and the structure is defined by three short helices that meet at a junction (Fig \ref{fig:rfam_hh_main}A, PDBID 2QUS \cite{Chi2008}). There are two main functional domains, the catalytic core that straddles the three-way junction and is responsible for cleavage, and a distal region defined by stem I-stem II tetraloops interactions, which promote efficient folding \cite{Khvorova2003}. Nucleotides composing these two domains are labeled in Fig \ref{fig:rfam_hh_main}A. An evolutionary trace was computed on 26 non-redundant aligned sequences of class I and class II hammerhead ribozymes that represented the major branches of the plant viruses. This led to normalized ET rankings of each base position, from 0\% (most evolutionary important) to 100\% (least important), that were mapped on the structure in Fig \ref{fig:rfam_hh_main}A. This mapping highlights two clusters of ET bases defined by ET rank percentile below 35\% (hereafter referred to as ET bases or ET nucleotides). The first of these clusters consists of 12 ET nucleotides and overlaps the catalytic junction. The second cluster consists of 5 ET nucleotides and overlaps the distal tetraloop region. The functional nucleotides and their respective domains are listed in Fig \ref{fig:rfam_hh_main}A.
+
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-0.5in}
+\centering
+  \includegraphics[scale=1]{figures/Fig3.png} %[width=\textwidth,height=\textheight,keepaspectratio]
+  \caption[ET nucleotides cluster, and predict functional sites in the hammerhead ribozyme. ]{\textbf{ET nucleotides cluster, and predict functional sites in the hammerhead ribozyme.}  (A) ET ranks mapped onto the structure of the hammerhead reveal clusters of ET nucleotide that overlap canonical functional sites (labeled nucleotides). (B) Clustering by ET nucleotides is statistically significant. (C) ET overlap z-score confirms that ET nucleotides inform both of the canonical functional sites. (To calculate site-specific $z_{o}^{35\%}$, we remove other known sites from consideration.)
+}
+  \label{fig:rfam_hh_main}
+  \end{minipage}
+\end{figure}
+
+Because clustering by ET residues is a defining feature of aminoacid ET, we assess the clustering of ET nucleotides in the hammerhead. Briefly, to quantify clustering of ET nucleotides, we calculate the number of pairwise structural contacts (distance of 4\AA\, or less) between ET nucleotides, $\omega$, and compare it to the number of contacts formed by same number of nucleotides selected randomly, $\langle\omega\rangle$. Using the standard deviation associated with the random selection, $\sigma$, we then express the significance of clustering by ET nucleotides as a z-score $z_c= (\omega - \langle\omega\rangle)/\sigma$. Quantitatively, the clustering z-score $z_c$ is the number of standard deviations that separates the observed number of ET base contacts from the number of contacts expected randomly, and z-scores 2 and above denote statistical significance. See Methods for details.
+
+Using this metric, we calculated clustering of hammerhead nucleotides, binned cumulatively according to their ET rank. We calculated $z_c$ for every bin between 0 to 35\% ET coverage (rank percentile), and found that ET nucleotides cluster with a mean z-score $z_{c}^{35\%} = 3.9$ (Fig \ref{fig:rfam_hh_main}B). Not surprisingly, the clustering profile in Fig \ref{fig:rfam_hh_main}B is similar to the behavior of ET residues in proteins seen in our previous work \cite{Mihalek2006-1}. We observed a high initial z-score, indicative of ET bases clustering to, hypothetically, form a major functional site, followed by a smooth decline as we expand our ET coverage to include lower-ranked nucleotides. These data confirm that ET nucleotides cluster in the structure, a behavior we would not expect if nucleotide selection was random.
+
+Next, we assessed the second major property of ET: the overlap between ET nucleotides and the molecule’s functional sites. To measure statistical significance of overlap in the hammerhead, we counted the number of active site bases in each ET bin, $k$, and compared this to the number of active site bases one expects to recover if selecting randomly, $m$. The random selection was modeled as a hypergeometric distribution, and had an associated standard deviation, which allowed us to convert $k$ into a z-score of overlap $z_o$  (see Methods for details). We calculated overlap z-score for the hammerhead as a function of ET coverage, and it is shown in Fig \ref{fig:rfam_hh_main}C. Once again, note overlap z-score peaks in the 0-35\% range indicating that ET nucleotides overlapped strongly with the catalytic core of the hammerhead (mean z-score $z_{c}^{35\%} = 3.6$). In addition to overlap z-score, we also measured quality of ET prediction in a more conventional manner using receiver-operator-characteristic (ROC) curves, and ET ranking recovers hammerhead active sites with AUC=0.82 (Fig \ref{fig:rfam_hh_supp1}A). These data show that that ET nucleotides overlap hammerhead’s two active sites.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-4in}
+\centering
+  \includegraphics[width=\textwidth]{figures/HH_supp1.png} %[width=\textwidth,height=\textheight,keepaspectratio]
+  \caption[ET identifies functional sites in the hammerhead (ROC).]{\textbf{ET identifies functional sites in the hammerhead (ROC).} ROC AUC measure of prediction accuracy is in agreement with ET overlap z-score. In (A) all active sites are evaluated, while in (B) and (C) the conserved catalytic core and the distal loops are evaluated individually.}
+  \label{fig:rfam_hh_supp1}
+  \end{minipage}
+\end{figure}
+
+%\ref{fig:rfam_hh_supp1}
+%  \ref{fig:rfam_hh_main}
+
+
+Next, we examined the ET clusters in greater detail. The core 12-nucleotide ET cluster overlaps the 16-nucleotide catalytic site of the hammerhead \cite{Nelson2008} with a site-specific mean z-score $z_{o}^{35\%}=4.5$  and AUC of 0.87 (Fig \ref{fig:rfam_hh_main}C center panel, and Fig \ref{fig:rfam_hh_supp1}B). Notably, the ET cluster contains the key catalytic nucleotides G12 and G8 (both with ET rank percentile of 23\%), which are the general base and acid in the cleavage reaction. The ET cluster is also enriched with thermodynamically costly unpaired nucleotides (A6, G5, U4), and nucleotides paired in the non-canonical Hoogsten fashion (C3 forms a Hoogsten pair with U7 and G8, C17 with A13 and U16.1). The highly ranked bases presumably fulfill a critical functional role maintained during evolution, leading to their top ET rankings. Critically, mutations in 11 of the 12 nucleotides in this ET cluster completely abolished cleavage activity \cite{Nelson2008}. These data confirm that the ET cluster directly overlaps the main functional site of the hammerhead. 
+
+Of note, four bases in the catalytic core (U16.1, C17, U7, and G1.1) are not part of the 12-nucleotide ET cluster, because their ET rankings of 36\%, 52\%, 77\%, and 96\% fall below the 35\% threshold we used to define the ET cluster.  While U16.1 straddles the 35\% threshold and in practice would be considered part of the ET cluster, the three other bases bear closer examination. Their significantly lower ranks suggest that these positions may be under lesser functional pressure, or possibly that there is inherent functional resilience to mutations. To test this hypothesis, we examined carefully the catalytic mechanism of the hammerhead, and the functional role of these three nucleotides.
+
+Although the two nucleotides G1.1 and C17 (ET rank percentile = 96\% and 52\%) directly participate in the reaction (C17 is the nucleophile and its activated 2’-hydroxy group attacks the phosphate group of sessile G1.1 \cite{Chi2008}), the critical electron transfer path is along the sugar-phosphate backbone and not the nitrogenous base. As a result, neither the G1.1 nor the C17 nucleotide is under heavy selective pressure. Indeed, direct mutational studies showed that position 1.1 accommodate all four bases, and C17 could also accommodate guanine and adenine (20\% reduction in activity \cite{Nelson2008}). Nevertheless, C17 forms a non-canonical Hoogsten pair with core nucleotide A13, and, perhaps as a result, cannot accommodate uracil (500-fold reduction in activity \cite{Nelson2008}). In keeping with this greater selective pressure, C17 has a substantially better ET rank (of 52\%) than the sessile G1.1 (96\%).
+
+The other notable exception in the catalytic core is U7 (ET rank percentile = 77\%). This base is nested among the 12 ET nucleotides, incongruent with its apparent mutational freedom. Yet, the exhaustive mutagenesis studies confirmed that U7 tolerates substitution \cite{Nelson2008}. While substituting any of the 12 ET nucleotides in the catalytic core reduces activity from 10- to 1000-fold, U7 mutations have no impact on the reaction rate. Thus U7 base identity is not structurally or functionally critical, in keeping with lower ET rank.
+
+
+In contrast to these data, there is evidence that the last exception, U16.1 which straddles the ET threshold (ET rank = 36\%), is critically functional. This base is positioned closely to core nucleotides G12 and C17 (general base and nucleophile in the cleavage reaction), and a recent study suggested that U16.1 could be responsible for coordinating $Mg^{2+}$ in a binding pocket formed by the three bases \cite{Mir2015}. The predicted role of the ion is to lower the pKa of G12 to make it more reactive toward C17. Therefore, unlike the three low-ranked exceptions, U16.1 is probably functional, as reflected by its near-threshold rank. Together these data show that the ET ranks of the core catalytic nucleotides are remarkably consistent with the mutational and biochemical interpretation of their functional role.
+
+Next, we examined the apical cluster, formed by the five ET nucleotides (U19, G20, G22, U44, and A46) in the stem I and II loops. This ET cluster overlaps hammerhead’s11-base tetraloop-tetraloop domain (labeled as Distal region in Fig \ref{fig:rfam_hh_main}A), which is important for the efficient folding of the hammerhead core \cite{Khvorova2003}. Within the domain, ET nucleotides form the structurally critical links between the two stems: U19 of stem I forms a pair with A46 of Stem II, while G20 and G22 bond with G45. Notably, these interactions are the energetically unfavorable Watson-Crick/Hoogsteen pairs, suggesting that hammerhead maintains them through evolution because they are functional. The last ET nucleotide in this cluster, U44, does not form cross-stem interactions, suggesting it serves a different structural role. Of the remaining six (non-ET) bases in the domain, only two form non-canonical interactions, and one of them (U21) is ranked just under the ET threshold (ET rank percentile = 39\%). These data show that ET discriminates between the more and less important nucleotides in this domain. Overall, ET bases overlap with the distal domain with a mean z-score $z_{o}^{35\%}=2.0$ , and ET predicts this domain with AUC of 0.76 (Fig \ref{fig:rfam_hh_main}C right, and Fig \ref{fig:rfam_hh_supp1}C).
+
+Notably, the two ET clusters are in accordance with the accepted two-step model for hammerhead folding. In the model, stem I and II of the distal region fold first, thereby promoting efficient folding of the catalytic core \cite{Hammann2001}. The catalytic core is universally conserved, and indeed ET performs very similar to sequence conservation when identifying it, as shown in Fig \ref{fig:rfam_hh_supp2}A (z-score of overlap) and Fig \ref{fig:rfam_hh_supp2}B (ROC curve).
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+%\vspace*{-in}
+\centering
+  \includegraphics[width=\textwidth]{figures/hh_entr_comparison.png} %[width=\textwidth,height=\textheight,keepaspectratio]
+  \caption[ET outperforms conservation in detecting the distal loops.]{\textbf{ET outperforms conservation in detecting the distal loops.} Overlap z-score in (A) shows that both ET and entropy identify the conserved catalytic core of the molecule. However, only ET identifies the distal region, which lacks obvious conservation (B). Represented as ROC curves in (C) and (D), the data support the same conclusion.}
+  \label{fig:rfam_hh_supp2}
+  \end{minipage}
+\end{figure}
+
+
+The distal regions, however, lacks obvious sequence conservation. As a result its discovery was delayed by several years because researchers focused exclusively on the conserved catalytic core. Ultimately, kinetic and chimeric studies in the full-length hammerhead \cite{Khvorova2003, Hammann2001} revealed that tetraloops are a functionally important domain. Ranking bases according to sequence conservation fails to detect the tetraloop domain, and ET outperforms conservation both in the z-score measure (Fig \ref{fig:rfam_hh_supp2}C, mean overlap z-score $z_{o}^{35\%}=2.0$  vs 0.41), and the ROC AUC (Fig \ref{fig:rfam_hh_supp2}D, AUC=0.76 vs AUC=0.63). ET detects the distal tetraloops, because while they are fairly variable across the entire tree, they are conserved within their respective class I and class II branches. ET detects this pattern of base variation, resulting in greater predictive power. For comparison, conservation scores are mapped onto the structure in Fig \ref{fig:rfam_hh_supp3}.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-4in}
+\centering
+  \includegraphics[width=\textwidth]{figures/Conservation_HH.png} %[width=\textwidth,height=\textheight,keepaspectratio]
+  \caption[Nucleotide conservation in the hammerhead.]{\textbf{Nucleotide conservation in the hammerhead.} Conservation scores are produced by Shannon Information Entropy. Note that compared to  ET in Fig \ref{fig:rfam_hh_main}A, the distal region of the hammerhead is not nearly as well defined by conservation.}
+  \label{fig:rfam_hh_supp3}
+  \end{minipage}
+\end{figure}
+
+In summary, these data show that ET detects clusters of evolutionary-important bases that define functional domains of the hammerhead. The equatorial ET cluster overlaps the catalytic core of the hammerhead, and the apical ET cluster overlaps the most important bases in the tetraloop domain. Notably, ET outperforms conservation when scoring bases in the tetraloop domain, because it takes into account the evolutionary history of the molecule. Furthermore, where biochemical evidence is available for individual nucleotides, it is remarkably coherent with the nucleotide ranks assigned by ET.
+
+%======================
+
+\subsection{Case study 2: Bacterial Ribosome}
+The second RNA model system to test ET was the bacterial ribosome. Ribosome is the universally-conserved ribonucleic complex that synthesizes polypeptides from (m)RNA templates. Mature bacterial ribosomes are comprised of two RNA molecules, the 16S and 23S ribosomal (r)RNA, as well as over 50 ribosomal proteins that bind the rRNA during assembly. The RNA component of the ribosome was originally thought to play a primarily structural role, but high-resolution crystal structures revealed that rRNAs are, in fact, responsible for the catalytic activity of the ribosome. The 16S rRNA decodes the mRNA message by selectively binding acylated tRNAs \cite{Demeshkina2012}, while the 23S rRNA catalyzes peptide bond formation \cite{Beringer2007}. Not surprisingly, the ribosome is an important drug target, with over 50 bacterial antibiotics developed to date \cite{Howe2015}.
+
+
+Traces for the 16S and 23S RNA were computed using curated alignments of bacterial rRNA provided as part of \cite{Petrov2014}. ET ranks, mapped onto the three-dimensional structure of the RNAs (Fig \ref{fig:ribosome_map}A), revealed that ET nucleotides clustered in the structure (mean ET clustering z-score $z_{c}^{35\%}=24.3$  in the 16S, and 32.8 in the 23S, Fig \ref{fig:ribosome_clustering}). Furthermore, ET nucleotides broadly overlapped major functional sites in the ribosome – the peptidyl-transferase center in 23S, and the decoding center in 16S (relevant nucleotides marked in Fig \ref{fig:ribosome_map}B and \ref{fig:ribosome_map}C). Quantification of overlap for these and other major functional sites is summarized in Fig \ref{fig:ribosome_olap16} for the 16S rRNA, and Fig \ref{fig:ribosome_olap23} for the 23S (see Fig \ref{fig:ribosome_auc16} and \ref{fig:ribosome_auc23} for corresponding ROC curves). In detail, in the 16S rRNA, ET bases overlapped the decoding center ($z_{o}^{35\%}=3.9$ , AUC=0.91), the tRNA E-, A-, and P- sites ($z_{o}^{35\%}=3.5$ , AUC=0.88), as well as the mRNA channel (mean ET overlap z-score $z_{o}^{35\%}=6.7$ , AUC=0.98). In the 23S rRNA, the ET cluster overlapped the peptidyl-transferase center ($z_{o}^{35\%}=8.7$ , AUC=0.94), the tRNA binding sites ($z_{o}^{35\%}=7.6$, and AUC = 0.86), as well as the GTPase-associated center ($z_{o}^{35\%}=3.2$ , AUC=0.72) and the sarcin-ricin loop ($z_{o}^{35\%}=5.3$ , AUC=0.85). These data show that ET detects the critically-important active sites in the ribosome.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-1in}
+\centering
+  \includegraphics{figures/Fig4.png}
+  \caption[ET mapping reveals clusters that overlap active sites in the ribosome.]{\textbf{ET mapping reveals clusters that overlap active sites in the ribosome.} ET ranks are mapped onto the structure in (A). Note the continuous ET cluster that spans both subunits and houses the peptidyl-transferase center (PTC) and the decoding center. Both are shown in detail in (B) and (C), where known catalytic nucleotides are labeled. Structures used are from PDBs 2WDK and 2WDL \cite{Voorhees2009}.}
+  \label{fig:ribosome_map}
+  \end{minipage}
+\end{figure}
+
+%\afterpage{\clearpage}
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+ \vspace{-4in}
+  \includegraphics{figures/Fig5.png}
+  \caption[ET nucleotides cluster in the ribosome.]{\textbf{ET nucleotides cluster in the ribosome.} Clustering z-score $z_{c}$ for 16S in (A) and 23S rRNA in (B). The high clustering z-scores are indicative of large functional cores.}
+  \label{fig:ribosome_clustering}
+\end{minipage}
+\end{figure}
+
+%\end{figure}\clearpage
+
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+ \vspace{-1.5in}
+  \includegraphics[width=\textwidth]{figures/ribosome_16S_olap.png}
+\caption[ET predicts functional sites in the ribosome (16S rRNA).]{\textbf{ET predicts functional sites in the 16S rRNA.} Overlap between ET bases and functional sites in 16S RNA is significant. The sites are decoding center (DC), tRNA binding sites, mRNA channel, translation factor binding sites, structural protein contact sites, antibiotic binding sites, and modified bases.Corresponding ROC AUC are shown in Fig \ref{fig:ribosome_auc16}.}
+ \label{fig:ribosome_olap16}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+ \vspace{-1.5in}
+  \includegraphics[width=\textwidth]{figures/ribosome_23S_olap.png}
+\caption[ET predicts functional sites in the ribosome (23S rRNA).]{\textbf{ET predicts functional sites in the 23S rRNA.} Overlap between ET bases and functional sites in 23S RNA is significant. The sites are peptidyl-transferase center (PTC), tRNA binding sites, sarcin-ricin loop (SRL), GTPase-associated center (GAC), translation factor binding sites, structural protein contact sites, antibiotic binding sites, and modified bases. Corresponding ROC AUC are shown in Fig \ref{fig:ribosome_auc23}.}
+\label{fig:ribosome_olap23}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+ \vspace{-4in}
+  \includegraphics[width=\textwidth]{figures/ribosome_16S_AUC.png}
+\caption[ET predicts functional sites in the ribosome (16S rRNA, AUC).]{\textbf{ET predicts functional sites in the 16S rRNA (AUC).} These data closely agree with z-scores in Fig \ref{fig:ribosome_olap16}.}
+ \label{fig:ribosome_auc16}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+ \vspace{-4in}
+  \includegraphics[width=\textwidth]{figures/ribosome_23S_AUC.png}
+\caption[ET predicts functional sites in the ribosome (23S rRNA, AUC).]{\textbf{ET predicts functional sites in the 23S rRNA (AUC).} These data closely agree with z-scores in Fig \ref{fig:ribosome_olap23}.}
+\label{fig:ribosome_auc23}
+\end{minipage}
+\end{figure}
+
+Next, we tested whether ET bases also overlap protein binding sites (refer to panels in \ref{fig:ribosome_olap16} and \ref{fig:ribosome_olap23}). First, we examined the binding sites of bacterial translation factors (including IF1, EF-Tu, EF-G, RF1, and RF3 for which high-resolution structures are available). They transiently bind the ribosome and are required for timely initiation, elongation and termination of translation. We defined binding sites as all rRNA bases within 4Å of the protein, and found that ET bases overlap TF binding sites with mean ET z-score $z_{o}^{35\%}=4.8$  in the 16S rRNA and 9.3 in the 23S (AUC=0.84 and 0.94 respectively). Next, we tested the binding sites of structural ribosomal proteins, which serve as scaffolding and are enfolded by the rRNA during assembly \cite{Nomura1973}. ET bases overlap these contact sites with mean ET z-score $z_{o}^{35\%}=0.96$ and 4.7 in 16S and 23S respectively (AUC = 0.62 and 0.63). As expected, overlap between ET bases and translation factor binding sites is markedly higher than the ET overlap with structural protein contact sites. This is in line with the expectation that structural proteins are not as critical to function. Unexpected is the discrepancy between ET overlap for r-protein sites in 16S and 23S rRNA ($z_{o}^{35\%}$ of 0.96 vs 4.7). Interestingly, r-proteins in the 16S occupy 42\% of all nucleotides, compared to only 29\% in the 23S rRNA. This implies higher specificity of binding in the 23S subunit, resulting in better overlap with ET nucleotides. These data reflect ET’s sensitivity to the evolutionary pressure exerted across the ribosome. ET clearly separates more important sites, such as the catalytic core and TF binding sites, from the r-protein sites. In summary, ET ranks of the nucleotide correlate strongly with their functional impact.
+
+Next, we also tested the critical structural bridges \cite{Liu2016} that connect the two subunits for overlap with ET nucleotides. We found that ET bases overlap the bridges in the 23S ($z_{o}^{35\%}=4.5$  and AUC=0.82), but not the 16S subunit ($z_{o}^{35\%}=1.2$ , AUC=0.66). To explain this difference, we examined the molecular basis of the bridge contacts, and found that 22 out of 48 contacts on the 16S side are formed by the nucleotide phosphate backbone, compared to only 7 out of 30 on the 23S (the difference is significant with hypergeometric p-value of 0.03). Because phosphate contacts are non-specific (not depended on the identity of the base), the nucleotides in 16S bridges are not evolutionary constrained and are ranked lower by ET. These data show that while ET is able to detect critical structural elements, the underlying molecular determinants can produce exceptions to the ET model, similar to the earlier example of the catalytic mechanism in the hammerhead.
+
+Because ET bases broadly overlap functional sites, we next asked: do known ribosomal antibiotics also target ET bases? To determine if ET recovers known antibiotic binding sites, we compiled a list of binding sites for 32 different antibiotics [11]. We quantified recovery of these sites by ET, and found that ET bases overlap antibiotic binding sites with mean ET z-score $z_{o}^{35\%}=0.41$ in 23S and 4.3 in the 16S (AUC = 0.62 and 0.80). While the data confirm that ET bases overlap strongly with antibiotic binding sites in the 16S rRNA, we asked why there was a lack of overlap in the 23S subunit. We examined the molecular basis for antibiotic action in 16S and 23S rRNA. We found that the 23S antibiotics mainly target the exit channel, which is a tunnel that traverses the subunit, and it is used to extrude the nascent polypeptide from the ribosome. Because the channel does not serve as a site for catalysis or binding, it is lined with nucleotides that are not under heavy selective pressure. As a result, 23S antibiotic binding sites have a modest overlap with ET bases. In contrast, we found that in the 16S RNA, antibiotic families primarily target the mRNA binding channel and the decoding center, which, as we already showed, are primarily composed of high-ranked ET bases. Thus, the molecular mechanism of antibiotic action is in line with ET nucleotide ranking.
+
+
+Next, we tested ET's ability to detect bases that do not necessarily belong to an established active site or binding interface, but are nevertheless hypothesized to be important: modified bases and those with known deleterious mutations We first examined modified bases; nascent rRNAs can be post-transcriptionally modified, and at least 34 nucleotides in the ribosome carry modifications \cite{Kowalak1995}. While the exact role of modified bases is unclear, ribosomes assembled from unmodified rRNA are less active than wild type \cite{Krzyzosiak1987}. ET overlaps modified bases with mean ET z-score $z_{o}^{35\%}=4.0$  in 16S and 5.9 in the 23S (AUC=0.93 and 0.87), suggesting that these bases evolved to perform a function in the large subunit. In addition to the modified bases, we examined nucleotides with known deleterious mutations. We compiled a list of mutations available on the Comparative RNA Website database \cite{Cannone2002}, and sorted them into unambiguously deleterious or benign. Applying ET, we see that while both cohorts overlap with ET bases, there is clear separation between the two categories of mutations (Fig \ref{fig:ribosome_mutations}). In the 16S, ET bases overlap with deleterious mutations more frequently than with benign mutations (mean z-score $z_{o}^{35\%}=4.5$ and AUC=0.92 for deleterious mutations, and $z_{o}^{35\%}=1.9$  and AUC=0.69 for benign). In the 23S subunit, the difference is also present (mean z-score $z_{o}^{35\%}=6.1$  and AUC=0.94 for deleterious mutations, and $z_{o}^{35\%}=2.9$  and AUC=0.81 for benign). Nucleotides with benign mutations rank consistently lower than nucleotides with lethal mutations. These data further point at a clear connection between evolutionary importance, as measured by ET, and functional impact.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+ \vspace{-1in}
+  \includegraphics[width=\textwidth]{figures/ribosome_mutations.png}
+\caption[ET discriminates between lethal and benign mutations in the ribosome.]{\textbf{ET discriminates between lethal and benign mutations in the ribosome.} Sites with benign mutations are ranked as less important than sites than display lethal mutations. This is true in both (A) 16S and (B) 23S rRNA. Overlap z-scores and ROC curves are in agreement.}
+\label{fig:ribosome_mutations}
+\end{minipage}
+\end{figure}
+
+Finally, we examined ET clusters that do not overlap with a known functional site. From the ribosomal structure, we excluded all nucleotides composing known sites, as well as all nucleotides within 10Å of a r-protein. This exclusion analysis produced 4 clusters of high-ranked ET nucleotides on the surface of the ribosome, three in the 23S and one in the 16S (Fig \ref{fig:ribosome_novel}). The ET nucleotides in these clusters (listed for each cluster in Table \ref{table:table2}) are undocumented in the literature and carry no obvious functional significance. We propose that clusters in the 23S could serve as sites for binding of regulatory proteins and chaperones, or as sites of ribosomal processing during maturation and assembly. Meanwhile, the ET cluster in 16S (Fig \ref{fig:ribosome_novel}D) is located adjacent to helix h5, which acts as a binding site for several translation factors \cite{Klaholz2004, Julian2011}. It is therefore possible that nucleotides in this cluster are involved in allosteric regulation of translation. These data show that ET-guided structural analysis can suggest sites of interest even in the well-studied systems such as the ribosome.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace{-3in}
+  \includegraphics{figures/Fig7.png}
+  \caption[Potentially novel ET clusters in the ribosome.]{\textbf{Potentially novel ET clusters in the ribosome.} Clusters (A-C) in the 23S rRNA could serve as binding sites for regulatory proteins, while cluster (D) in the 16S is close to a translation factor binding site, and therefore could play a role in translation. Nucleotides in white are either known functional sites, or within 10Å of a r-protein, and therefore excluded from analysis. Nucleotide composition of these clusters is listed in Table \ref{table:table2}}.
+  \label{fig:ribosome_novel}
+  \end{minipage}
+\end{figure}
+
+\begin{table*}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace{-6in}
+\setlength{\tabcolsep}{5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{0.5} % Default value: 1
+\begin{tabular}{| ccl |}
+%\textbf{Cluster} & \textbf{rRNA} & \textbf{Nucleotides}             \\ \hline     
+\multicolumn{1}{c}{\textbf{Cluster}} &
+\multicolumn{1}{c}{\textbf{rRNA}} & 
+  \multicolumn{1}{c}{\textbf{Nucleotide in cluster}}\\\hline
+
+A       & 23S  & C45, G48, A49, G51, A52, U120, A213, G214, G215,\\
+&&					 A216, G219, G220, A221, A222, G232, A233, C234, \\
+&&					 C237, A255, A256, A262, A265, G266, A422, C426, \\
+&&					 U427, A428, A429, G430, U431, A432 \\ \hline
+B       & 23S  & G1281, G1283, C1289, C1298, G1299, A1301, \\
+				&&	U1313, C1314, C1315, U1329, C1330, C1604, \\
+				&&C1605, A1608, A1609, A1641, G1642, G1643 \\ \hline
+C & 23S & C32, U33, G35, U306, G307, A454, G473, G474,\\
+&& U475, G476, A502, A503, A505, G506, U511, \\
+&& G1212, A1213, U1234, G1235, G1236, A1237 \\ \hline
+D& 16S & A51, A53, C54, G115, A116, G117, U118, \\
+			&&  A119, A313, C314, A315, G317, G318, A1468\\ \hline
+                                                                                                                                  
+\end{tabular}
+ \caption[Composition of undocumented ET clusters in the ribosome.]{Composition of undocumented ET clusters in the ribosome.}
+  \label{table:table2}
+    \end{minipage}
+\end{table*}
+
+In summary, we discovered that ET nucleotides cluster on the structure of the ribosome, and that the core ET cluster clearly defines the major functional sites of the molecule. Additionally, ET ranking also suggests protein and antibiotic binding sites. We also show that higher-ranked ET nucleotides are enriched for inactivating mutations and post-transcriptionally modified bases. In detecting these sites, ET is more accurate than conservation (\ref{fig:ribosome_conservation}), according to both z-score and ROC AUC. Finally, because these data indicate that the ET model applies to the ribosome, we suggest several potentially novel sites.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+ \vspace{-0.5in}
+  \includegraphics[width=0.9\textwidth]{figures/ribosome_conservation2.png}
+\caption[ET is more accurate in detecting ribosomal sites than conservation.]{\textbf{ET is more accurate in detecting ribosomal sites than conservation.} For each of the 17 ribosomal functional sites in our test set, we measured the difference, $\Delta$, in prediction accuracy between ET and conservation (Shannon Information Entropy). The four metrics of prediction accuracy used are (A) mean z-score of overlap for nucleotides bins ranked in top 0-35\%, $z_{o}^{35\%}$, (B) z-score of overlap averaged over all rank bins, $z_{o}$, (C) maximum overlap z-score $z_{o}^{max}$, and (D) area under the ROC curve. While the results agree closely, ET outperforms conservation in most cases in all 4 of the prediction metrics.
+}
+\label{fig:ribosome_conservation}
+\end{minipage}
+\end{figure}
+
+\subsection{Generalizing the Model to Other fRNA families}
+The hammerhead and ribosome case studies are consistent with two fundamental ET properties: that top-ranked bases cluster structurally, thereby revealing functional sites. To assess the generality of these features, ET was next tested on RNA families in the Rfam database. We selected 1070 RNA families that had at least 10 canonical sequences in their Rfam seed alignment. This set of RNAs included a broad selection of classes, including riboswitches, tRNAs, RNAzymes, viral particles, small regulatory RNA, and lncRNA (Fig \ref{fig:rfam_pie}A). Additionally, among these are 71 families that can be paired with at least one high resolution structure. Each alignment was traced, and the trace was evaluated for clustering among ET bases as a function of ET coverage. 
+
+We first evaluated the high-resolution structured set, and found that 64 out of 71 RNAs yield clustering z-score $z_{c}^{35\%}$ greater than 2, indicating that ET is detecting clusters of important nucleotides (Fig \ref{fig:general_historgram}A, white). This set consisted of well-ordered full length structures including riboswitches, RNAse P, catalytic introns, ribozymes,and  rRNAs (Fig \ref{fig:rfam_pie}B). Notably, ribosomal and splicesomal RNA displayed larger z-scores compared to the rest of the set (14 or more), suggesting large and evolutionary-important core functions. We then examined the 7 Rfam families that did not show structural clustering by ET nucleotides. Three of those families were small viral structures (approximately 30 nucleotides in length) found in the Human Immunodeficiency Virus (HIV) RNA. Their sequence alignments consisted of highly similar sequences (mean sequence identity 91\%), and their narrow phylogenetic scope precluded meaningful ET analysis. By contrast, the average mean sequence identity in successful examples was 64\%. Finally, in each of the remaining 4 families that performed poorly, clustering could not be fully assessed, because their best matched structures were a fragment of the whole length molecule. Overall, however, these data show that the model is in keeping with observations in 90\%of the fncRNAs we were able to test. Failures rarely but consistently associated with missing structural context, or a deficit of evolutionary information due to a lack of sufficiently divergent sequences.
+
+Next, in order to test ET for RNAs without known three-dimensional structures, which is 93\% of our test set, ET base clustering was assessed in the primary sequence (1-dimension), and in the secondary structure models provided by Rfam (2-dimensions). 83\% of secondary structures (Fig \ref{fig:general_historgram}A, gray) displayed ET clustering with $z_{c}^{35\%}$ above 2. The few outliers with large z-scores, once again, were rRNA and spliceosome subunits. ET clustering could also be detected in the majority of primary sequences, with 62\% reaching $z_{c}^{35\%}$ of 2 (Fig \ref{fig:general_historgram}A, black). These data show that while secondary and primary structures lack the nuanced three-dimensional context, they nonetheless reveal clusters of ET nucleotides. One possible application of this property is to use ET clustering in predicted secondary structures to distinguish between poor and robust models. 
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace{-3in}
+  \includegraphics{figures/Fig8.png}
+  \caption[Clustering of ET nucleotides, and their overlap with functional sites is general in RNA families.]{\textbf{Clustering of ET nucleotides, and their overlap with functional sites is general.} Z-scores above 2 indicate statistically significant clustering and overlap. Shown in (A) are aggregate ET clustering data for 1070 RNA molecules. Et clustering is detected in 62\% of primary sequences, 83\% of secondary structures, and 91\% of tertiary structures. In a subset of 15 of these molecules (B), we measure overlap with known functional sites. In 12 of 15 test cases, overlap is significant.}
+  \label{fig:general_historgram}
+  \end{minipage}
+\end{figure}
+
+Finally, of the 71 RNA families tested for three-dimensional ET clustering, we selected 15 for functional site analysis. These included the hammerhead ribozyme, the two ribosomal subunits, tRNA, RNAse P, group I self-splicing introns, and 9 riboswitches. For each of these molecules, we searched the literature for the canonical functional sites, and then computed their overlap with ET bases. In 12 of 15 cases, functional site overlap z-score $z_{o}^{35\%}$ was above 2.0 (Fig \ref{fig:general_historgram}B). In two cases, the THF riboswitch and the PreQ1 riboswitch (RF01831 and RF00522), overlap approached significance with $z_{o}^{35\%}=1.86$ and 1.84. Finally, functional site overlap z-score $z_{o}^{35\%}$ was 1.44 for the FMN riboswitch (RF00522). Interestingly, its seed alignment contained a number of misaligned sequences; removing them, and retracing, raised $z_{o}^{35\%}$ from 1.44 to 1.9.
+
+Together, these analyses of ET clustering and overlap suggest that the ET model is general and applicable to a wide range of functional RNAs.
+
+\subsection{Optimizing Sequence Selection Improves Performance}
+Since, in RNA, ET fulfills the same clustering and functional site overlap properties as in proteins, perhaps that likewise improving the quality of the structural clusters can guide improvements to the quality of functional site predictions? In proteins the two correlate strongly. As a result, improvements in ET clustering can be used to optimize sequence selection, which in turn produces better functional site recovery \cite{Mihalek2006-1}, with important practical ramification in optimization of analyses \cite{Mihalek2006-2}. 
+
+To test this hypothesis, we assessed two different metrics of cluster quality: ET clustering z-score, as described earlier, and the ET smoothness. ET smoothness is the cumulative ET rank difference between all neighboring nucleotides in the structure (meaning lower absolute values for smoothness corresponds to a smoother distribution of ranks). This measure reflects smoothness of evolution over the entire structure, and is a more holistic metric than the mean ET base clustering \cite{Wilkins2013}.
+
+We tested the relationship between the clustering metrics and the quality of prediction in 15 RNA families with curated functional sites. For each family, we generated a set of 1,000 alignments by randomly shuffling bases in the original alignment. We traced the alignments, and measured their smoothness, and their mean overall clustering and overlap z-scores, $z_o$  and $z_c$. We then binned the alignments by their shuffle rate, and averaged the scores, as shown in Fig \ref{fig:et_optimization}A) for glmS riboswitch. As seen in the glmS example, as we introduce errors into the alignment, ET overlap, clustering, and smoothness deteriorate in highly correlated manner. Across the 15 test cases, mean correlation between ET overlap and clustering was $r=0.95$, and $r=-0.96$ between overlap and smoothness (Fig \ref{fig:et_optimization}B).
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace{-1.5in}
+  \includegraphics{figures/Fig9.png}
+  \caption[Optimization of input alignments via ET clustering and smoothness improves overlap.]{\textbf{Optimization of input alignments via ET clustering and smoothness improve overlap.} Degrading the glmS alignment in (A) shows that clustering and smoothness are correlated with overlap. Applying this analysis to 15 molecule shows that the correlations are general (B). This suggests that sequence selection can be optimized to produce a more effective ranking of ET. This is shown in (C), where we use two different clustering measures, to select alignments that produce better functional site predictions than starting alignments.}
+  \label{fig:et_optimization}
+  \end{minipage}
+\end{figure}
+
+The correlation between structural quality of the trace and overlap has practical implications, because smoothness and ET clustering can be used as indirect measures of trace fidelity. By optimizing trace alignments to maximize smoothness (or ET clustering), we, presumably, also maximize accuracy of active site prediction. We tested this hypothesis in the nine test riboswitches. For each riboswitch, we generated a starting alignment, distinct from the seed, and based on 500 sequences chosen at random from the family’s full sequence repository on Rfam. Using these alignments as reference, we then generated for each riboswitch an ensemble of 5,000 alignments by removing a random number of sequences $0< n< N–20$ (where $N$ is the size of the alignment) from the reference. We then traced each alignment, and computed its ET smoothness, ET clustering z-score $z_{c}^{35\%}$, and ET overlap z-score $z_{o}^{35\%}$. Finally, we chose from the random ensemble, the alignment that has the smoothest ET, or the highest ET clustering. We then compared overlap z-scores produced by the smoothness- and clustering-optimized alignments to the original Rfam alignments.
+
+Startlingly, we found that in 7 of 9 cases, optimization via ET smoothness led to decrease in performance, with a mean reduction of 13\%. To explain this behavior, we examined the smoothest alignments, and found that the optimization selected alignments consisting of a small number of highly invariant sequences. These alignments sacrificed phylogenetic diversity as a trade-off for a very smooth, yet uninformative, ET ranking of highly conserved nucleotides. To address this problem of narrow phylogenetic scope, we introduced Rank Entropy ($RE$), $\sum_{r}^{N} fr \log fr$, which measures the frequency ($fr$) of each ET rank ($r$) in the alignment. RE is maximum when each column is assigned a unique rank, and is zero when the alignment is entirely conserved.
+
+Normalizing RE and ET Smoothness to 1, and then using their product as a single measure (RE×SMT), rescued optimization performance in 8 of 9 cases, yielding mean improvement of 9\% in prediction quality (Fig \ref{fig:et_optimization}C, dashed lines). Finally, we tested mean ET clustering as an optimization metric. We found that maximizing mean ET clustering z-score produced alignments that yielded an average improvement of 24\% (Fig \ref{fig:et_optimization}C, solid line). ET clustering z-score performed better than smoothness-based metrics, because it expresses significance of ET nucleotide clustering relative to the remaining structure. When the conserved ET bin dominates the trace (ET nucleotides are more likely to cluster), this results in a greater expected clustering weight, a wider standard deviation, and as a result a lower clustering z-score, making this measure more sensitive than raw ET smoothness. Together, these data show that optimization of input alignments is both possible and useful.
+
+In summary, sequence selection can be optimized in order to achieve better active site recovery. Input sequences are the principal factor that affects the quality of the trace. Using ET clustering and RE-smoothness as indirect measures, we can remove sequences that are either too phylogenetically distant or erroneous. In this manner, we can elevate trace quality and more accurately predict the active sites.
+
+\section{Conclusion and Future Direction}
+Over 50 years ago, Carl Woese and Francis Crick hypothesized that RNA could serve as a precursor to DNA and proteins \cite{Lehman2010}, and since then, RNAs have been found to perform a variety of roles within the cell. Here, we show that the similarity between functional RNAs and proteins is not just a subject of anecdotal likeness. We argue that this similarity is based upon the fundamental principle of selection that governs evolution of function in both RNAs and proteins. In the same manner as evolutionarily important amino acids in proteins, evolutionarily important RNA nucleotides evolve in compact, non-random clusters that inform on the function of the molecule. As we have shown in a number of examples, including the hammerhead and the ribosome, these clusters correspond to catalytic sites, ligand-binding pockets, and molecular interfaces, and are enriched for inactivating mutations and modified nucleotides. These basic properties underline the relationship between sequence, structure, and function in structured RNAs, and suggest that it is possible to identify novel functional sites in structured RNA molecules using Evolutionary Trace analysis. 
+ Furthermore, we demonstrate that there is a quantifiable correlation between cluster formation and recovery of functional sites. This correlation is directly informed by ET clustering and ET smoothness, which measures the evolutionary history similarity in nearby amino acids or nucleotides. In structured RNA, just like in proteins, evolution tends to minimize rank differences between neighboring nucleotides.This leads to formation of smooth clusters that inform function. In practice, this property allows us to maximize prediction accuracy of ET by constructing alignments that maximize spatial clustering and smoothness of ET nucleotides.
+ 
+As this study has focused on well-known structured RNAs, it is not clear whether ET properties are common to all RNA classes, especially novel classes such as lncRNA which have a tenuous link between sequence, structure, and function. This limitation of ET has partly been demonstrated in the two case studies. ET erroneously flags critical structural nucleotides as unimportant, when the function of the nucleotide is decoupled from its nitrogenous base, as we have observed in the hammerhead with nucleotides G1.1 and C17, and with the bridge nucleotides in the 16S rRNA. Because the phosphate backbone assumes function in these nucleotides, the bases are unrestrained and do not display the characteristic pattern of branch-specific sequence conservation that ET quantifies as evolutionary-important. Therefore, it is important to be mindful of possible false negatives when applying ET to a poorly understood molecule.
+
+
+The future directions of this work is three-fold. First, while RNA ET is currently available as a command-line tool, we wish to also create an online-based server to make the method accessible for the general audience. Second, the ET paradigm is general to any evolving polymer, and we would like to extend this work to functional non-protein-coding DNA sequences, for example gene promoters. The current implementation of the tool already supports analysis of DNA sequences, and ET would benefit from explicit validation on DNA. Finally and most importantly, the authors would like to apply ET in relevant experimental work to predict functional sites in fRNA. 
+
+In fact, we are currently assisting AR Gener at the Baylor College of Medicine in his work on HIV. Briefly, his central hypothesis is that HIV interferes with human genome remodeling by interacting with host protein CTCF, a known regulator of human genome architecture \cite{pmid26045254_ctcf}. To test this hypothesis, he identified 18 putative CTCF binding sites in HIV, and is preparing to assay them for binding to CTCF. To help guide his inquiry, we traced a representative alignment of 3,666 full-length HIV sequences, and ranked each CTCF site according to the average ET score of its nucleotides. We hypothesize that the highest-ranked CTCF sites are also more likely to bind to CTCF, and these sites will be tested first. While experimental validation is still pending, this application of ET provides an example of its utility in RNA research. We expect the need for such analyses to grow in the future, as the scope of RNA research continuous to expand.
+
+\chapter[The Problem of Function Annotation in Biology]{\LARGE The Problem of Function Annotation in Biology}
+
+In Chapter 2, we explored functional discrimination of individual nucleotides within the confines of a single RNA molecule. In Chapter 4, we address the problem of function determination from a different perspective, that of determining functions of individual proteins within the context of a cell. The basic definition of this problem is rather straight-forward: given all possible proteins (20,000 in human) and all possible functions (approximately 46,000 functional labels codified in the Gene Ontology), we arrive at $20,000 \times 46,000$ 960 million possible protein-function pairings. Within this universe of possible functions, how do we find those that actually exist in the cell? While there are high-throughput experimental techniques developed for such a task (two-hybrid screens \cite{Bruckner_yeast2h}, protein microarrays \cite{Sutandy2013_microarrays}), they cannot exhaustively scan all 960 million combinations. Not surprisingly then, the task of protein function determination is a fundamental problem in biology. Thankfully, this problem yields itself to a computational solution, and a plethora of computational tools exist to supplement the experimental approaches. These tools range from sequence comparison to text-mining and are reviewed in more detail in Chapter 4
+
+Likewise, we recognize that \textit{in silico} annotation is an attractive solution, and present two novel approaches to solving this problem in Chapter 4. Briefly, to generate predictions, we integrate the sprawling Gene Ontology (GO) database, which represents the current ground truth of protein function annotation, into two end-to-end pipelines. In the first approach, we represent GO as a flat matrix and use Non-negative Matrix Factorization (NMF) to assign novel GO term annotations to proteins. In the second approach, we abstract Gene Ontology data by creating a protein-protein network, and use it as a conduit for function prediction via Global Information Diffusion, a method that propagates functional labels along edges in network. We provide cross-validation and retrospective validation for the two methods, and find that they are both capable of predicting novel annotations.
+
+\chapter[Reasoning on Gene Ontology Networks Predicts Novel Protein Annotations]{\LARGE Reasoning on Gene Ontology Networks Predicts Novel Protein Annotations}
+This work is under preparation for submission. Anticipated author order is Ilya Novikov, Angela Wilkins, and Olivier Lichtarge.
+
+Author contribution: Conceived and designed experiments: IN, AW; Performed the experiments: IN; Analyzed the data: IN, AW. Writing the paper: IN, OL.
+\clearpage
+\section{Introduction}
+
+In order to attenuate living systems, one needs to understand how individual components within the cell function and interact. As a result, much of the literature in biology is focused on modeling and validating function of individual proteins and nucleic acids. Experimental techniques that underpin function annotation in proteins such as protein microarrays \cite{Sutandy2013_microarrays}, yeast two-hybrid screens \cite{Bruckner_yeast2h}, co-immunoprecipitation \cite{Iqbal_coip}, and structure determination \cite{Ilari_xray, Winey_EM, Bothwell_NMR} are powerful but also expensive, and often scale poorly. As a result, the rate at which proteins are annotated is lagging behind the rate at which new proteins are discovered (Fig \ref{fig:anno_growth}). Furthermore, because biomedical research tends to be narrowly focused, a minority of proteins account for the majority of annotations. For example, the upper third of the best-annotated human proteins in the Uniprot database \cite{uniprot} accounts for over 70\% of all human annotations (Fig \ref{fig:anno_count}).
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace*{-3in}
+  \includegraphics[width=0.8\textwidth, trim={0 0 0 3cm}, clip=true]{figures_go/go_growth2.png}
+  \caption[Annotation growth is outpaced by discovery of new proteins.]{\textbf{Annotation growth is outpaced by discovery of new proteins.} Shown is the number of annotations with each successive GO annotations (GOA) release for UNIPROT database. While the total number of annotations, blue, is growing rapidly (due to growth in the number of new proteins), the average annotation density, green, is increasing at a much slower rate.}
+  \label{fig:anno_growth}
+ \end{minipage}
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering%
+\vspace*{-3in}
+  \includegraphics[width=0.7\textwidth, trim={0 0 0 3cm}, clip=true]{figures_go/go_anno_count.png}
+  \caption[Well-annotated proteins account for most of the annotations.]{\textbf{Well-annotated proteins account for most of the annotations.} The plot is based on the June 2017 release of GO annotations for Uniprot.}
+  \label{fig:anno_count}
+ \end{minipage}
+\end{figure}
+
+Because the cost of experimental annotation is high, the research community has produced a large number of computational solutions to the problem of functional annotation \cite{cafa2}. A number of function prediction methods infer function on the basis of sequence homology, making a resonable assumption that similar protein sequences share functional properties \cite{BLAST, PSI_BLAST, pfam_full_seq}. The same logic drives to structure similarity approaches that tranfer functional annotations between proteins based on similarity of their atomic structure \cite{DALI_struct, SSAP_struct, COFACTOR_struct}. A subset of these methodologies refine the homology aspect by focusing on local features like subdomains and structure motifs rather than the full-length molecule \cite{CATH_structure_domain_sim, PROSITE_local_seq, venner_ETA}. Another approach makes use of genomic features, hypothesizing that if two genes exist in a similar genomic context, they are likely to share function \cite{synFPS_synteny}. Many methods make predictions on the basis of protein-protein association networks. Given a network, they assume that connected proteins are also functionally connected \cite{Deep_GOppi, Erdin2013, Martin_EXP1}. Finally, Natural Language Processing (NLP) algorithms infer functions by directly text-mining biomedical literature for evidence of functionality \cite{KDD1, NEK2}.
+
+Here, to supplement these existing approaches, we propose a novel computational solution that is based purely on the integration and analysis of the data contained in the Gene Ontology (GO) database \cite{GOdb}. Since its inception in 1998, GO has become the standard for protein classification in biology. GO organizes available evidence and classifies proteins by labeling them with GO terms. GO terms describe a protein’s molecular function, biological process, and structural location within the cell. The terms are arranged in a hierarchy, the term ontology, according to their specificity and context. Higher-level terms describe general features, while radiating child terms provide increasingly granular descriptions (for example of a protein annotated with GO terms, see Table \ref{table:table_p53terms}, and refer to Fig \ref{fig:term_example_onto} for an example of a term hierarchy). The Gene Ontology has been so successful with its categorization schema, that the 2019 release of the database contains 597 million annotations, and over 46 thousand unique GO terms. Clearly, the Gene Ontology contains a trove of curated, context-sensitive biological data. We hypothesized that GO, because it is so information-rich, can be used as a sole feature set for predicting novel functional annotations.
+
+\begin{table*}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace{-6in}
+\setlength{\tabcolsep}{5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{0.5} % Default value: 1
+\begin{tabular}{lcll}
+\textbf{GO term id} & \textbf{GO term}\\ \hline
+GO:0002326 & B cell lineage commitment               \\
+GO:0007569 & cell aging                              \\
+GO:0071479 & cellular response to ionizing radiation \\
+GO:0034644 & cellular response to UV                 \\
+GO:0007417 & central nervous system development      \\
+GO:0051276 & chromosome organization                 \\
+GO:0008340 & determination of adult lifespan         \\
+GO:0006302 & double-strand break repair              \\
+GO:0048568 & embryonic organ development             \\
+GO:0007369 & gastrulation                            \\
+GO:0001701 & in utero embryonic development          \\
+GO:0071850 & mitotic cell cycle arrest  \\ \hline
+\end{tabular}
+ \caption[GO terms assigned to human protein P53.]{\textbf{GO terms assigned to human protein P53.} Note that the terms are not flat labels. Instead, they are arranged in a hierarchy that contextualize each term's identifier within a wider functional scope.}
+  \label{table:table_p53terms}
+    \end{minipage}
+\end{table*}
+
+
+
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace*{-4in}
+  \includegraphics[width=0.2\textwidth]{figures_go/p53bindingexample.png}
+  \caption[Ancestor-child term relationship.]{\textbf{Ancestor-child term relationship.} All GO terms are arranged into a heirarchy with lower-level terms providing a granular description of a general property or process designated by the ancestor. Shown here is an example of protein binding terms organized into a hierarchy.}
+  \label{fig:term_example_onto}
+ \end{minipage}
+\end{figure}
+
+Here we present two different models for extracting, modeling, and predicting on GO data. In our first approach (Fig \ref{fig:nmf_model}), we extract all protein-term annotation for an organism from GO, and convert them into a sparse matrix A, where A(i,j) = 1 denotes that protein $i$ is annotated with GO term $j$, while the remaining cells are set to 0. To predict novel protein-term pairs on this matrix, we employ Nonnegative Matrix Factorization (NMF), a machine learning method used for matrix completion \cite{nmf_lee}. NMF factorizes the original matrix A, and then reconstructs it as an approximation $A’$, where all of the possible protein-term pairs now have a weight assigned to them. The weights reflect the likelihood that a protein-term pair exists in the original matrix A, and therefore in nature.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace*{-4in}
+  \includegraphics[width=\textwidth]{figures_go/nmf_model3.png}
+  \caption[GO-NMF model for prediction of novel protein-term annotations.]{\textbf{GO-NMF model for prediction of novel protein-term annotations.} Annotation corpus for an organism is flattened as a matrix representation mapping proteins to their annotated terms. NMF factorizes this matrix by randomly seeding two smaller submatrices $W$ and $H$, and then optimizing them, until the product $WH$ approximates the original matrix. The imperfect approximation contains post-factorization scores that reflect how likely a protein is to be annotated with a term.}
+  \label{fig:nmf_model}
+ \end{minipage}
+\end{figure}
+	
+Next, we developed an alternative model based on the concept of GO term semantic similarity \cite{semantic_review}, a measure that reflect how similar two proteins are according to their GO terms. To implement this model for an organism, we measure GO term similarity for every possible pair of proteins in an organism, and then withhold the lowest scoring edges from the matrix to create a sparse protein-protein network (Fig \ref{fig:gid_model}). In these networks proteins with similar GO terms preferentially connect to each other. To predict novel annotations on this network, we employ Global Information Diffusion \cite{gid_basic} to propagate functional labels from annotation-rich nodes to nodes that lack annotation.
+
+%\cite{resnik} 
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace*{-1in}
+  \includegraphics[width=\textwidth]{figures_go/gid_model3.png}
+  \caption[GO-GID model for prediction of novel protein annotations.]{\textbf{GO-GID model for prediction of novel protein annotations.} For a set of proteins, we measure GO term semantic similarity in a all-vs-all manner to construct a similarity matrix, where every pair of proteins has a similarity weight associated with it. We convert the matrix into a network by dropping low-scoring weights. In the network, we can then label nodes with their known functions, and diffuse the labels to nodes with no annotations.}
+  \label{fig:gid_model}
+ \end{minipage}
+\end{figure}
+
+The individual components of these two frameworks have been used in biology before. NMF, famously used in business to match consumers with products, has been used in biology to predict protein-protein and protein-RNA associtations \cite{nmf_example2, nmf_example1}, and to draw connections between proteins, drugs, and diseases \cite{sam_nmf}. Meanwhile, Global Information Diffusion has seen use in a variety of functional studies. In one example, GID was used to propagate P53 labels over a literature-based kinase network to predict novel kinases of this important oncogenic protein \cite{KDD1, NEK2}. In another example, GID over supergenomic protein network identified EXP1, a protein in \textit{Plasmodium falciparum}, as a target for anti-malarial therapy. GID of functional annotations over a network of evolutionarily-important structural motifs had been used to assign functions to orphan proteins \cite{Erdin2013}. Lastly, GO term semantic similarity has been used to create networks to infer protein-protein interactions \cite{go_semantic_ppi1, go_semantic_ppi2}. These algorithms are robust and general, and integrating them with the Gene Ontology to create a predictive framework is novel. 
+
+We tested the two models, and found that both have predictive power. GO-NMF predicts future protein-term annotations in retrospective and time-stamped validation, and is general across species (species modeled shown in Table \ref{table:table_go}). To compare GO-NMF to other methods, we submitted predictions to the time-delayed Critical Assessment of Functional Annotation challenge \cite{cafa2}, and found that NMF-GO performed on par with the field (publication in preparation by the CAFA Consortium). Meanwhile, we cross-validated GO-GID in the context of human kinase, human proteomic, and \textit{P. putida} proteomic networks, and found that GO-GID recovers protein nodes with similar function, including nodes associated with specific phosphorylation targets, diseases, or GO terms. We then used GO-GID to help validate members of the PAK kinase family as interactors of oncogenic protein P53.
+
+\section{Methods}
+
+\subsection{Gene Ontology}
+
+Before describing the predictive models, it is useful to first discuss the organization of data in the Gene Ontology. In practice, Gene Ontology consists of two sets of data. First is the annotation corpus, which is the collection of all annotations assigned in GO to the proteins of a particular species. GO maintains separate annotation corpora for popular model species such as humans and mice, as well as a massive aggregate depository that includes GO annotations displayed by the proteins in the Uniprot database. The second component of GO is the term ontology, which is the directed acyclic graph that describes the GO terms and their relationships. The ontology information is available as a single file and is general to all species. Note also that GO terms are organized are organized into 3 independent categories: molecular function ontology (MFO) terms to describe functional mechanisms, biological process ontology (BPO) terms to describe pathways, and cell component ontology (CCO) terms to describe the physical location. We downloaded the annotation corpora for the 19 test species (Table \ref{table:table_go}) and the ontology graph at \url{http://geneontology.org/docs/downloads/}.
+
+\begin{table*}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace{-3in}
+\setlength{\tabcolsep}{5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{0.5} % Default value: 1
+\begin{tabular}{lll}
+\textbf{Organism}                                                                                       & \textbf{Proteins} & \textbf{Annotations} \\ \hline
+\textit{Mycoplasma genitalium}                                  & 438      & 3,733       \\
+\textit{Helicobacter pylori}                                               & 1,131    & 8,242       \\
+\textit{Methanocaldococcus jannaschii}  & 1,353    & 10,460      \\
+\textit{Sulfolobus solfataricus}                      & 2,050    & 12,503      \\
+\textit{Pseudomonas putida}                        & 4,068    & 26,377      \\
+\textit{Bacillus subtilis} (strain 168)                                                                 & 3,405    & 28,952      \\
+\textit{Pseudomonas syringae} pv. tomato                                  & 5,076    & 29,506      \\
+\textit{Salmonella typhimurium}                                   & 3,691    & 32,116      \\
+\textit{Candida albicans}                                                & 6,423    & 39,631      \\
+\textit{Escherichia coli} (strain K12)                                                                  & 3,888    & 50,126      \\
+\textit{Dictyostelium discoideum}                                                                       & 8,857    & 69,179      \\
+\textit{Schizosaccharomyces pombe}                                            & 5,102    & 82,966      \\
+\textit{Saccharomyces cerevisiae}                                          & 6,719    & 110,767     \\
+\textit{Drosophila melanogaster}                                                                        & 12,560   & 152,127     \\
+\textit{Danio rerio}                                                                                    & 21,591   & 166,685     \\
+\textit{Arabidopsis thaliana}                                                                           & 25,395   & 239,163     \\
+\textit{Rattus norvegicus}                                                                              & 19,282   & 334,681     \\
+\textit{Mus musculus}                                                                                   & 21,484   & 559,780     \\
+\textit{Homo sapiens}                                                                                   & 19,255   & 566,176  \\  \hline
+\end{tabular}
+ \caption[Species used in validation.]{\textbf{Species used in validation.} We modeled predictions for all species here with NMF, and for human and \textit{P. putida} proteins with GID. These species were selected for validation, because they were featured in the CAFA3 competition.}
+  \label{table:table_go}
+    \end{minipage}
+\end{table*}
+
+
+\subsection{Reasoning on GO with NMF (GO-NMF)}
+
+\subsubsection{Representing Gene Ontology data for NMF}
+The first step in making predictions is to convert knowledge in the Gene Ontology into a mathematical representation amenable to reasoning. With Gene Ontology annotations, a natural representation is an adjacency matrix $A$ that maps proteins against their GO terms. Formally, given a set of proteins $\textbf{p}$ and a set of terms $\textbf{t}$, $A(p_{i}, t_{j}) = 1$, if protein $p_{i}$ is annotated with term $t_{j}$, and 0 otherwise. Note that because GO terms are arranged in a hierarchy, a protein annotated with a low-level child term also carries all of the child's ancestor terms. For example, a protein annotated with term \textit{P53 kinase}  is also implicitly a \textit{protein kinase}. We explicitly include these relationships in $A$. The adjacency matrix provides a medium suitable for making predictions with NMF.
+
+\subsubsection{Non-negative Matrix Factorization Algorithm}
+To predict novel connections in the protein-term matrix, we use Non-negative Matrix Factorization (NMF). NMF decomposes the original matrix $A$, of size $m \times n$, into two smaller matrices $W$ and $H$ of size $k \times m$ and $k \times n$. $W$ and $H$ are basis vectors that compress the relationships found in $A$ into a reduced number of dimensions $k << min(n, m)$.  The goal of the method is to generate $W$ and $H$ such that their product, $WH$, approximates the original matrix, $A \approx WH$. This problem is solved by seeding a random $W$ and $H$, and iteratively solving the following set of equations for $H$ and $W$:
+
+\begin{equation*} \label{eq:NMF_equation}
+\begin{aligned}
+\text{Solve} & & W^{T}WH = W^{T}A & & \text{for H}\\
+\text{Solve} & & HH^{T}W^{T} = HA^{T} & & \text{for W}
+\end{aligned}
+\tag{10}
+\end{equation*}
+
+until the objective function $F$ converges to a minimum:
+
+\begin{equation*} \label{eq:NMF_equation}
+F(W,H) = ||A-WH||^2_{F}
+\tag{11}
+\end{equation*}
+
+The dot produt $WH$ decompresses the basis vectors and creates an imperfect approximation of A, where each cell now carries a non-zero weight $WH(p_{i},t_{j})$ that reflects how likely protein $p_{i}$ is to be associated with GO term $t_{j}$. These weights are the basis for novel predictions. We normalize the weights by converting them into a z-score, and rank order all predicted protein-vs-term pairs in $WH$ in descending order. We treat the highest-scoring pairs $(p_{i},t_{j})$ as more likely to occur in nature, than pairs with lower scores. The GO-NMF framework is depicted in Fig \ref{fig:nmf_model}.
+
+\subsection{Reasoning on GO with GID (GO-GID)}
+
+In addition to GO-NMF, we sought to create an alternative model by leveraging the concept of GO term semantic similarity. The goal of GO term semantic similarity is to measure similarity between two proteins by comparing their GO term annotations. High degree of similarity implies that a pair of proteins perform a similar molecular function, participate in the same biological process, and are located within the same cell compartment. In practice, GO similarity is a proxy measure for protein-protein association. This property of GO term similarity can be used to model protein-protein networks, where protein nodes are connected by edges that represent GO terms similarity of the two proteins. In this manner, we  abstract GO into a condensed network representation, which is readily compatible with function prediction via Global Information Diffusion. The approach is sketched in Fig \ref{fig:gid_model}.
+
+\subsubsection{Generating Protein-Protein Similarity Networks}
+
+To generate a protein-protein similarity network for a given set of proteins, we first measure similarity between each possible pair of proteins $i$ and $j$ within the set. This, in turn, is accomplished by measuring the similarity between individual GO terms that belong to a pair of proteins. A large number of term similarity measures are available \cite{semantic_review}, but their performance is relatively close \cite{Pesquita2008_sim_eval}, so we chose to use the Resnik method \cite{resnik} for its simplicity of implementation.
+
+Given two GO terms $q$ and $w$, Resnik traverses the Gene Ontology hierarchy, and records all ancestor terms shared by $q$ and $w$. Next, it measures Information Content ($IC$) of each ancestor, defined as:
+
+\begin{equation*} \label{eq:resnik_equation}
+IC = -log \frac{t}{N}
+\tag{12}
+\end{equation*}
+
+where $t$ is the number of times the ancestor term has been used to annotate a protein, and $N$ is the total number of protein-term annotations in the set. The $IC$ produces large weights for low-level terms that are positioned deep in the hierarchy and used infrequently due to their high specificity. Likewise, high-level terms have lower $IC$ weights because they are very general and are used frequently. Ancestor term with the highest Information Content is designated as the Most Informative Common Ancestor (MICA) of terms $q$ and $w$. The Resnik similarity of two GO terms, then, is simply the $IC$ weight of their $MICA$, formally:
+
+\begin{equation*} \label{eq:resnik_equation}
+ similarity(q,w) = IC(MICA)
+\tag{13}
+\end{equation*}
+
+Given two proteins, then, we determine in a pairwise manner the similarity of their GO terms. To convert these term-term scores into a single measure of similarity for the protein pair, we employ Best Match Averaging (BMA). For each term, we keep the score of its most similar match, and average the scores across the set. This BMA score is the GO term similarity weight for the two proteins $i$ and $j$, $sim_{ij}$,. The higher the score, the more similar the two proteins are.
+
+Finally, to create the protein-protein similarity network for a set of proteins of size $N$, we measure Resnik similarity $sim$ for each possible pair of proteins $i$ and $j$ in the set, and record them in the similarity weight matrix $W$, so that $W(i,j) = sim_{ij}$. To convert this weight matrix into a graph, we iterate through each protein in $W$ and set its $\sqrt{N}$ most similar partners to 1, and the remaining to 0. The result is a sparse protein-protein GO similarity network, $G$, where edges connect proteins that display a high degree of GO term similarity.
+
+%\begin{equation*} \label{eq:resnik_network}
+% G(i,j) = 1
+%\tag{14}
+%\end{equation*}
+
+This network can now be used to propagate informationa across protein nodes via Global Information Diffusion.
+
+\subsubsection{Global Information Diffusion}
+The goal of Global Information Diffusion (GID) is to propagate information between neighboring nodes in the network. The utility of GID comes from the assumption that two protein connected in the network are also connected within the cell, and therefore functionally associated. By diffusing functional labels between connected nodes, we can spread annotations to previously-unannotated nodes.
+
+Information is initially seeded in the network by labeling proteins that display a relevant property with label $y=1$, and setting the remaining nodes to $y=0$. The label is then diffused across the network by minimizing the following objective function:
+
+\begin{equation*} \label{eq:GID_equation}
+H = \sum_{i}(y_{i}-f{i})^{2} + \alpha \sum_{i,j}G_{ij}(f_{i}-f_{j})^{2}
+\tag{15}
+\end{equation*}
+
+where vector $y$ contains the initial label information for each protein $i$, and vector $f$ contains the protein's post-diffusion label weights. The first term in the function seeks to minimize the loss of the initial label (the term is minimized to 0 if the post-diffusion score $f_i$ is the same as the initial label $y_{i}$). The second term counters this by maximizing label similarity between neighboring nodes $i$ and $j$ in the graph, $G$ (note that the second term reaches 0 if the post-diffusion label of node $i$, $f_{i}$, is the same as the weight of its neighbor $j$, $f_{j}$). The balancing of these two terms propagates information through the network. (Diffusion factor $\alpha$ is used to control the contribution of the second term to $H$; larger $\alpha$ forces the function to maximize diffusion to neighboring nodes.)
+
+The final output of diffusion, vector $f$, contains the post-diffusion label scores for each of the nodes, and higher scores correspond to a higher likelihood that node displays the labeled property in nature. For final application, we normalize weights in $f$ as a z-score.
+
+\subsubsection{Evaluation Methodology}
+
+We use two standard tests to evaluate both models.
+
+Cross-validation is the first test. The goal of cross-validation is to "hide" part of the existing data from the test set, and then attempt to recover it using the model. For example, given a protein-term matrix $A$, we divide A into 10 randomly-chosen partitions, or folds, and then set all non-zero edges in one of the partitions to 0 (we "hide" or "leave" that fold out). We then apply NMF to the remaining 9 folds to reconstruct the partition that has been hidden. The purpose of the "hidden" fold is to serve as a validation set, while the remaining folds are used to train the model. If the method is robust, it will assign high weights to the "hidden" edges. We repeat this for each of the 10 folds, until we cover every edge in $A$. We then evaluate whether resulting predicted weights agree with the original matrix $A$. A special type of cross-validation, when the number of folds is equal to the number of items in the data set, is known as leave-one-out validation (that is, each fold is of size 1).
+
+The second test is retrospective (time-stamped) validation. Unlike cross-validation that assays the ability to recover pre-existing structures, the goal of retrospective validation is to simulate \textit{de novo} predictions. We achieve this by splitting the input data into a training and a validation set according to a particular time stamp. For example, we exclude all annotations made after 2015, and then use the available data to make predictions. A robust predictor will produce predictions that closely agree with actual post-2015 annotations.
+
+We evaluate predictor performance in both of these experiments using Receiver Operating Characteristic Curve. We discussed ROC in Chapter 2, but let us briefly review. A robust prediction algorithm will assign, within its particular scoring schema, a higher score to a true interaction (in our case, a higher factorized score in $WH$, or a higher post-diffusion label  $y$), than to an interaction that does not exist. Given a set of rank ordered predictions, we traverse them in order of decreasing score, and at each unique threshold, evaluate both TPR and FPR. Plotted as curve, TPR will increase at a faster rate than FPR if the predictor provides robust classification. An ideal classifier (with TPR = 1, and FPR = 0) will produce a ROC curve with AUC=1. A predictor that lacks discriminatory power will produce a curve with AUC=0.5. We use the area under the ROC curve (AUC or AU(RO)C) as a primary evaluation metric in this chapter.
+
+\section{Results and Discussion}
+\subsection{GO-NMF Predicts Novel Annotations}
+
+To determine whether GO-NMF can be used as a predictive tool, we first cross-validated NMF in a set of three model species, \textit{B. subtillis}, \textit{S. cerevisiae}, and \textit{D. Melanogaster}. For each of the species, we downloaded the annotation corpus from GO, and converted the annotations into an adjacency matrix of protein vs terms. All existing annotations were marked with 1, and the rest were left unassigned (set to 0). Next, we tested NMF's prediction capacity to predict novel edges in these matrices via 10-fold cross-validation. Briefly, we divide the adjacency matrix it into 10 folds and "hide" one of the folds from the data set. Then, we apply NMF to the remaining data to recover the left-out fold. We iteratively repeat the experiment for each fold, and compare post-factorization edge weights to the original matrix. Data are shown in Fig \ref{fig:nmf_cv_3_models} as ROC curves.
+
+NMF performed well in all 3 species, with AUC=0.97 in \textit{B. subtillis}, AUC=0.98 in \textit{S. cerevisiae}, and AUC=0.99 in \textit{D. Melanogaster}. To test whether this performance is general, we applied the cross-validation experiment to 11 additional species. We found that NMF performed equally well in these species, and average AUC across all test cases is 0.95 (Fig \ref{fig:nmf_cv_summary}). These data show that NMF assigns high post-factorization scores to the "hidden" protein-term edges during cross-validation, and that this predictive power is general across multiple species.
+
+
+\begin{figure}
+\vspace*{-3.5in}
+\begin{minipage}[c][\textheight]{\textwidth}
+  \includegraphics[width=\textwidth]{figures_go/NMF_results_1_CV_v2.png}
+  \caption[Cross-validation of GO-NMF in three model species.]{\textbf{Cross-validation of GO-NMF in three model species shows that NMF has predictive power.} In all three species, AUC is significantly greater than 0.5. Each curve represents a cross-validation experiment, whereby the input data are divided into 10 folds, followed by an iterative process of leaving one fold out, and using the remaining 9 to generate predictions. Once predictions are produced for each of the left-out folds, the reconstituted matrix is compared to the original input matrix of protein-terms.}
+  \label{fig:nmf_cv_3_models}
+ \end{minipage}
+\end{figure}
+%\clearpage
+
+\begin{figure}
+\vspace*{-3in}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+  \includegraphics[width=0.5\textwidth, trim={0 0 0 5cm}, clip=true]{figures_go/NMF_results_CV_summary.png}
+  \caption[NMF predictive power is general across species.]{\textbf{NMF predictive power is general across species.} We extend the cross-validation experiment to 11 additional species (14 total), and find that in these species NMF performs equally well. Mean AUC across all 14 species is 0.95.}
+  \label{fig:nmf_cv_summary}
+  \end{minipage}
+\end{figure}
+%\clearpage
+
+Next, to better gauge GO-NMF as predictor of \textit{de novo} connections, we subjected NMF to restrospective validation. We hid annotations discovered after January 2016 from the data set, and generated the protein-term matrices for the three model species. We then applied NMF to these time-stamped matrices to generate predictions. We compared the predictions against protein edges actually discovered after January 2016, and found that NMF recovers them with high AUCs: AUC is 0.88 in \textit{B. subtillis}, 0.91 in \textit{S. cerevisiae}, and 0.89 in \textit{D. Melanogaster} (see Fig {\ref{fig:nmf_ts}). To test whether this performance is general, we expanded the retrospective analysis to 16 additional species (Fig {\ref{fig:nmf_ts_gen}), and found that mean AUC across all test cases is 0.89. These data show that NMF-GO is able to suggest novel protein-term edges before they appear in the Gene Ontology.
+
+\begin{figure}
+\vspace*{-3in}
+\begin{minipage}[c][\textheight]{\textwidth}
+
+  \includegraphics[width=\textwidth]{figures_go/NMF_TS_3.png}
+  \caption[Time-stamp validation of GO-NMF in the three model species.]{\textbf{Time-stamp validation of GO-NMF in the three model species.} For each of the 3 species, we generated a matrix of input data based on protein annotations found in the January 2016 release of GO. We then applied NMF to these data to make predictions, and found that the predictions are enriched for edges (annotations) discovered after January 2016. This further shows that GO-NMF has predictive power.}
+  \label{fig:nmf_ts}
+\end{minipage}
+\end{figure}
+%\clearpage
+
+\begin{figure}
+\vspace*{-3in}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+  \includegraphics[width=0.5\textwidth, trim={0 0 0 4cm}, clip=true]{figures_go/NMF_TS_histo.png}
+  \caption[GO-NMF predictive power is general across species in time-stamped validation.]{\textbf{GO-NMF predictive power is general across species.} We extended the time-stamped validation analysis to 16 additional species (19 total), and found that NMF predicts time-stamped edges with a mean AUC of 0.88.}
+  \label{fig:nmf_ts_gen}
+  \end{minipage}
+\end{figure}
+%\clearpage
+
+We next asked, how can the GO-NMF model be improved? One simple avenue for improvement is to increase the size of the input data set by adding more features. We tested this hypothesis in two experiments.
+
+For three test species, we segregated annotations into three independent input matrices $A_{BPO}$, $A_{MFO}$, $A_{CCO}$ according to the ontology of the annotation (biological process ontology terms are delegated to $A_{BPO}$, and so on). We then conducted 10-fold cross-validation on each of the individual ontology matrices. We found that NMF's performance on individual subontolgoies is robust, but is lower than in the full ontology. In the three examples in (Fig \ref{fig:nmf_ontologies}), the average performance of the entire ontology was AUC=0.976, and AUC=0.958 for the individual ontologies. These data suggest that combining all annotations into a large inclusive dataset, as we have done from the start, yields better predictions.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-5in}
+\centering
+  \includegraphics[width=\textwidth]{figures_go/NMF_Component_Ontologies.png}
+  \caption[Combined ontology matrix improves performance.]{\textbf{Combined ontology matrix improves performance.} Predictions generated by the combination of the three ontologies perform slightly better than individual ontologies. The Cell Component (CC) ontology, which is not as densely populated as the Biological Process Ontology (BPO) and the Molecular Function ontology (MFO), has the lowest predictive power.}
+  \label{fig:nmf_ontologies}
+  \end{minipage}
+
+\end{figure}
+
+In another experiment, we examined retrospective performance of NMF in \textit{D. discoideum}. The number of annotations in \textit{D. discoideum} steadily increased from approximately 24,000 in 2012 to 44,000 in 2017. We hypothesized that the growing number of annotations should lead to better performance of NMF in 2017, compared to 2012. To test this hypothesis, we conducted a series of retrospective experiments. Starting with \textit{D. discoideum} annotations available in 2012, we attempted to predict new annotations that had appeared by year 2017. We then moved the time stamp closer to 2017 one year at a time, and repeated the experiment. We discovered that as the input annotation set grows and approaches 2017, the NMF recovers novel annotations with higher accuracy (Fig \ref{fig:nmf_dicty}). These data are in agreement with the ontology segregation experiment; greater number of input features leads to better predictions. These data also suggest that performance of NMF will continue to improve in the future, simply as a byproduct of Gene Ontology growth.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-3.5in}
+\centering
+  \includegraphics[width=0.5\textwidth, trim={0 0 0 2.5cm}, clip=true]{figures_go/NMF_dicty_ts.png}
+  \caption[Performance improves as more data becomes available \textit{D. discoideum}.]{\textbf{Retrospective performance in \textit{D. discoideum} improves as more data becomes available.} From 2012 to 2016, the number of annotations in \textit{D. discoideum} nearly doubled, and that growth is reflected in better time-stamped performance through the years.}
+  \label{fig:nmf_dicty}
+  \end{minipage}
+
+\end{figure}
+
+
+Finally, as a test of prospective validation, we submitted our prediction for the 19 species to the Critical Assessment of Function Annotation (CAFA) competition \cite{cafa2}. The goal of CAFA is to survey the field of function prediction by soliciting predictions from the community. Participants are allowed 6 months to make and submit predictions; once predictions are submitted, the organizers wait 6 months to allow the Gene Ontology to accumulate new annotations. Then, they evaluate predictions made by the participants against these novel annotations, and rank the competing methods. We submitted protein-to-term term predictions made with GO-NMF, and found, according to the preliminary ranking released by the consortium, that, averaged across all prediction categories, our method ranked 36th out of 62 participants. GO-NMF performed better in predicting BPO go terms (ranked 15th), as opposed to MFO (39th) and CCO terms (45th), which is expected as BPO is the denser of three ontologies. A more detailed evaluation of these data is forthcoming in the consortium publication. However, the rankings suggest that GO-NMF, a fairly basic approach, performs on par with the field.
+
+In summary, NMF-GO provides a simple and intuitive schema for predicting novel term-to-protein annotations in the Gene Ontology. The method performs well in both cross-validation and time-stamped validation, and produces better predictions when operating on a larger data set. Finally according to CAFA3 results, GO-NMF performs on par with other methods in the field, which is encouraging for such a simple paradigm.
+
+
+\subsection{GO-GID Predicts Novel Annotations}
+
+While the data show that NMF-GO is a viable approach for reasoning on GO, the NMF is a flat, minimalist representation of GO. It includes relationships between proteins and terms, but it does not encode the term-term relationships contained in the GO hierarchy. To explicitly incorporate term-term relationships into our predictions, we designed an alternative reasoning schema for GO, rooted in the concept of GO term semantic similarity. GO term semantic similarity is a measure that reflects the similarity between any two proteins, based on the comparison of their GO terms. Given a set of proteins, we can measure in a pairwise manner the degree of similarity between each of them. This produces a protein-protein matrix, $M$ where each weight $M(i,j)$ represents an edge connecting two proteins $i$ and $j$. We convert this weight matrix into a graph (network) by explicitly removing all of the lowest-scoring connections (setting $M(i,j)=0$). The remaining pairs in $M$ are set to 1 to represent an edge connecting the two proteins. In this manner, we produce a protein-protein network.
+
+This network representation of GO is readily amenable to reasoning by Global Information Diffusion. Briefly, the goal of GID is to diffuse information along the edges of the network, and the basic hypothesis is that two proteins closely connected in the network are more likely to share traits, such as function. To propagate information, we label known proteins with a label of interest (set corresponding label in vector $y$ to 1), diffuse the label over the network to other protein nodes (initial label $y=0$), and rank proteins according to their post-diffusion score $f$. Higher post-diffusion scores indicate a higher likelihood for the protein node to display the trait designated by the label. In this manner, we suggest novel functions for previously unannotated proteins. For more detail on GO semantic similarity and GID see Methods.
+
+We first tested this model on a GO similarity network of 509 human kinases. To construct the network, we compiled the list of all known human kinases (n=509), and for each kinase collected its associated GO terms from the human annotation corpus. Next, we measured GO term similarity between each possible kinase pair, and created the GO similarity weight matrix. For each protein in this matrix, we kept 25 highest-scoring edges, and set the remaining to 0. This produced in a human kinase network, where each node is connected to its most similar kinase by an edge. Note that because Resnik semantic similarity only measures similarity between pairs of GO terms from the same ontology, we created three separate networks, each based on the Biological Process, Molecular Function, or Cell Component annotations.
+
+% by virtue of connecting functionally-related proteins
+To test whether these three networks have predictive power, we examined kinases that phosphorylate P53, a major oncogene. We compiled a list of known P53 kinases (Table \ref{table:table_p53}), and labeled their nodes in the network. We then subjected these labeled nodes to leave-one-out cross-validation. As described before, the goal of cross-validation is to "hide" part of the data, and then test whether the predictor recovers it. Here, we "hide" P53 kinases, one at a time, by setting their node's functional label (for association with P53) to 0. We then diffuse the remaining P53 labels via GID, and record the post-diffusion $f$-score for the left-out kinase. We iteratively repeat this until we have acquired an $f-score$ for each P53 kinase in positive set.
+
+If the prediction method is robust, then the left-out P53 kinases will be ranked highly compared to other, non-P53 nodes (the negative set). The data, in Fig \ref{fig:go_p53_loo}, show that to be the case. GID recovers left-out P53 kinases with AUC=0.87 in the Biological Process-derived network, AUC=0.87 in the MF network, and AUC=0.69 in the CC network. These data show that in the GO similarity kinase network P53 kinases are connected, and are predictive of each other.
+
+
+\begin{table*}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace{-3in}
+\setlength{\tabcolsep}{5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{0.5} % Default value: 1
+\begin{tabular}{lll}
+\textbf{P53 Kinase} & \textbf{Year discovered} \\ \hline
+CSNK2A1    & 1990            \\ 
+CDK1       & 1992            \\
+PRKDC      & 1992            \\
+CDK2       & 1995            \\
+MAPK8      & 1995            \\
+CDK7       & 1997            \\
+CSNK1D     & 1997            \\
+MAPK9      & 1997            \\
+EIF2AK2    & 1999            \\
+CHEK1      & 2000            \\
+CHEK2      & 2000            \\
+GSK3B      & 2001            \\
+MAPK1      & 2001            \\
+PLK3       & 2001            \\
+AURKA      & 2004            \\
+TAF1       & 2004            \\
+RPS6KA3    & 2005            \\
+CDK9       & 2006            \\
+CDK5       & 2007            \\
+DYRK2      & 2007            \\
+HIPK2      & 2007            \\
+IKBKB      & 2007            \\
+TTK        & 2009           \\
+AURKB      & 2011            \\
+CSNK1A1      & 2011            \\
+RPS6KA1        & 2011           \\ \hline
+\end{tabular}
+ \caption[List of P53 kinases and their date of discovery.]{\textbf{P53 kinases and their date of discovery.} The list had been provided by A. Wilkins.}
+  \label{table:table_p53}
+    \end{minipage}
+\end{table*}
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-5in}
+\centering
+  \includegraphics[width=0.5\textwidth, trim={0 0 0 1.7cm}, clip=true]{figures_go/gid_p53_LOO.png}
+  \caption[P53 kinases LOO validation.]{\textbf{P53 kinases Leave-One-Out validation.} These data show that GID recovers P53 kinases at a high rate, and that the underlying network is robust. Additionally, these data show that CCO ontology is not as predictive as BPO and MFO, and that excluding automatically-assigned annotations degrades peformance ($NOIEA$ in the legend denote networks built without IEA annotations). Note also that these networks were constructed without the P53-related terms such as the \textit{P53 binding} term, in order to avoid trivializing the problem.}
+  \label{fig:go_p53_loo}
+  \end{minipage}
+
+\end{figure}
+
+One interesting finding from cross-validation is the disparity in performance between the three ontologies. The BPO- and MF-derived network clearly performs better than CC. This is not surprising as CCO is the shallowest of the three ontologies, and is in line with our cross-validation experiment in GO-NMF that showed that CCO ontology lags in performance (Fig \ref{fig:nmf_ontologies}).
+
+Another interesting finding is the impact of automatically-assigned annotations on performance. Roughly half of all annotations in the Gene Ontology are assigned automatically without human curation ($IEA$ code in the annotation corpus). It is a reasonable assumption that $IEA$ annotations aren't as reliable, and therefore would negatively impact prediction. To test this hypothesis, we excluded IEA annotations from the input data, and constructed the networks based solely on manually-curated annotations. The data (\textit{NOIEA} curves in Fig \ref{fig:go_p53_loo}) show that IEA-deprived networks performed significantly worse across all three ontologies. These data suggest that IEA anotations are actually quite reliable, and that the method benefits by including all of the available annotations, much like GO-NMF.
+
+So far the validation has been focused on P53 kinases, so next we asked whether the network accurately represents links between other kinases. We compiled a list of 41 different phosphorylated proteins, and for each protein identified the list of its kinases (from the PhosphoSite database \cite{ppsite}). Just like with P53 kinases, we used the phosphorylated protein-kinase association as the functional label of interest. We subjected these 41 kinase sets to LOO cross-validation in the BPO network, and found that they perform as well as the P53 kinases. The data is summarized in Fig \ref{fig:go_kinases_loo}. 88\% of the kinase sets performed with an AUC greater than 0.8. These data show that the kinase network reflects connections between all kinases not only the kinases that phosphorylate P53.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-3.5in}
+\centering
+  \includegraphics[width=0.6\textwidth, trim={0 0 0 5cm}, clip=true]{figures_go/gid_kinases_LOO.png}
+  \caption[Human kinases LOO validation.]{\textbf{Performance of 41 kinase sets in LOO cross-validation shows that the kinase network is general to non-P53 kinases.} The kinases are recruited into sets based on their target protein, each set is then subjected to LOO validation.}
+  \label{fig:go_kinases_loo}
+  \end{minipage}
+
+\end{figure}
+
+To further test the generality of the model, we created a human proteomic network using the biological process annotations from the human annotation corpus. In this network, we tested for links between proteins according to their disease association. We compiled a list of 1571 human diseases, and to each disease assigned the proteins associated with it in the OMIM database \cite{omim}. We applied LOO validation to each of these disease-associated protein sets. We found, in Fig \ref{fig:go_diseases_loo}, that GID recovers disease genes with AUC $>$ 0.70 in 84\% of the cases. These data show that disease-associated genes cluster in the network of human proteins, and are predictive of each other.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-4in}
+\centering
+  \includegraphics[width=0.70\textwidth, trim={0 0 0 5cm}, clip=true]{figures_go/gid_disease_LOO.png}
+  \caption[Human disease set LOO validation.]{\textbf{GID recovers disease-associated proteins in the human proteomic network.} Each point in the histogram represents a single LOO experiment conducted on a set of proteins associated with a disease, and disease association is the functional label being predicted during LOO validation. Disease-protein relationships were extracted from OMIM by B. Bachman.}
+  \label{fig:go_diseases_loo}
+  \end{minipage}
+
+\end{figure}
+
+For our last test, we expanded the cross-validation into a non-human system. We constructed a proteomic-scale BPO network for \textit{P. putida}, and in this case used Gene Ontology terms as our functional label of choice. We went through each term one at a time, and labeled all of its associated proteins in the network, then conduct LOO validation to see if proteins annotated with the term would rescue their "left-out" sibling. The data, summarized for all sets as a single curve in Fig \ref{fig:go_putida_loo}, shows that GID recovers "hidden" term labels with AUC=0.87. These data show that to modeling GO is general across species.
+
+Together, these data confirm our primary hypothesis: abstracting Gene Ontology via term similarity produces a network with node connections that reflect protein-protein associations occurring in the cell. This gives the network predictive power.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-4in}
+\centering
+  \includegraphics[width=0.5\textwidth, trim={0 0 0 3.5cm}, clip=true]{figures_go/GID_LOO_putida.png}
+  \caption[\textit{L. putida} LOO validation.]{\textbf{\textit{L. putida} LOO validation is in agreement with other models.} Here, we built the network based on the BPO, and diffused GO term labels. The performance is in line with our observations in the kinase network and the human proteomic network.}
+  \label{fig:go_putida_loo}
+  \end{minipage}
+
+\end{figure}
+
+\subsubsection{Prospective Predictions and Validation}
+
+Retrospective studies have shown that GO similarity networks are predictive when combined with GID.
+
+Next, we tested whether the approach can be used to predict future annotations in a series of time-stamped trials. First, we tested on the P53 kinases. We constructed a series of kinase networks spanning year 2003 to 2011, and in each of the networks labeled kinases known at that time to phosphorylate P53. We then diffused them to predict annotations, and tested the prediction results against the P53 kinases which had not been discovered yet. In this manner, we assayed networks between 2003 and 2011, and the data are plotted in Fig \ref{fig:go_p53_ts}. The data show that there is modest positive enrichment for yet-undiscovered P53 kinases, and that performance improves over time. Next, as a test for generality, we also applied the retrospective test to the \textit{P. putida} network. We created a network based on July 2016 annotations, and then diffused existing GO terms, in order to predict GO terms annotated to \textit{P. putida} in the following the next 6 months. We found that diffusion predicted the new annotations with AUC of 0.71 (Fig \ref{fig:go_putida_ts}). Together these data show that GO has some capacity to predict future annotations.
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-4in}
+\centering
+  \includegraphics[width=0.65\textwidth, trim={0 0 0 3.4cm}, clip=true]{figures_go/GID_TS_P53s.png}
+  \caption[P53 kinases retrospective validation.]{\textbf{P53 kinases retrospective validation on networks with a time-stamp cutoff of 2003 to 2011.} Each experiment attempts to recover future P53 kinases by diffusion of P53 labels known to be true in that year, using networks which are likewise constructed only on the data available up to that date. This validation set up is meant to imitate \textit{de novo} prediction workflow. The data suggest there is some enrichment for P53 kinases among top-scoring prediction. Additionally, performance improves through the years, likely a result Gene Ontology's growth, as a greater number annotations creates a more reliable network.}
+  \label{fig:go_p53_ts}
+  \end{minipage}
+
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-4in}
+\centering
+  \includegraphics[width=0.5\textwidth, trim={0 0 0 3.9cm}, clip=true]{figures_go/GID_TS_putida.png}
+  \caption[\textit{L. putida} time-stamp validation.]{\textbf{\textit{L. putida} time-stamp validation.} Here, we build a proteomic network for \textit{L. putida} using annotations available in July 2016. We attempt to recover GO terms, assigned to \textit{L. putida} in the following 6 months, by diffusing GO terms known in 2016. With AUC significantly greater than 0.5, These data show that these future annotations are ranked higher than average by the GO-GID predictor.}
+  \label{fig:go_putida_ts}
+  \end{minipage}
+
+\end{figure}
+
+Finally, we compared our predictions to the novel, experimentally-validated P53 kinases discovered in the lab by L. Manley. She hypothesized that the family of p21(CDC42/Rac)-activated kinases (PAKs) regulates P53. The line of inquiry was supported by literature, but we also validated it computationally. We diffused the known P53 kinases on an up-to-date kinase network, and found that PAKs ranked in the top half of all predictions (see Table \ref{table:table_pak}), including PAK2, PAK4, and PAK7 that ranked within the top 20\%. When L. Manley tested the PAKs experimentally, she found that all phosphorylate P53, and two, PAK6 and PAK4, form stable interactions with it in vivo.
+
+In addition to PAKs, A. Wilkins in the lab had predicted kinase NEK2 to be a regulator of P53, using P53 label diffusion on a literature-derived network of human kinases \cite{NEK2}. The lab of L. Donehower at Baylor College of Medicine tested the prediction experimentally, and confirmed that NEK2 is a negative regulator of P53. Diffusion of P53 kinases on the GO term similarity network places NEK2 in the top 10\% of all predictions. Position of NEK2 and PAKs along ROC curve is show in Fig \ref{fig:go_paks}. These data show that GO-GID provides moderately strong support for the interaction of these proteins with P53, which agrees with the experimental data.
+
+\begin{table*}
+\begin{minipage}[c][\textheight]{\textwidth}
+\centering
+\vspace{-7in}
+\setlength{\tabcolsep}{5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{0.5} % Default value: 1
+\begin{tabular}{lcll}
+\textbf{Node} & \textbf{label z-score} & \textbf{rank (out of 484)} & \textbf{\% rank} \\ \hline
+NEK2 & 1.659       & 47   & 9.7\%   \\
+PAK2 & 1.360       & 76   & 15.7\%  \\
+PAK4 & 0.972       & 93   & 19.2\%  \\
+PAK7 & 0.959       & 95   & 19.6\%  \\
+PAK6 & 0.092       & 145  & 30.0\%  \\
+PAK3 & 0.000       & 178  & 36.8\%  \\
+PAK1 & -0.071      & 210  & 43.4\%\\  \hline
+
+\end{tabular}
+ \caption[GID ranks of PAKs and NEK2.]{\textbf{GID ranks of PAKs and NEK2}. GID ranks PAKs and NEK-2 in the upper half of the predictions for P53 interactions. Average percentile rank of these nodes is 25\%.}
+  \label{table:table_pak}
+    \end{minipage}
+\end{table*}
+
+\begin{figure}
+\begin{minipage}[c][\textheight]{\textwidth}
+\vspace*{-6in}
+\centering
+  \includegraphics[width=0.5\textwidth, trim={0 0 0 4.5cm}, clip=true]{figures_go/PAKs.png}
+  \caption[PAK and NEK2 ranks along the ROC curve.] {\textbf{PAK and NEK2 ranks along the ROC curve.} This is a visual representation of data in Table \ref{table:table_pak}. Compared to other nodes in the network, GID properly identifies these kinases as more likely to interact with P53.}
+  \label{fig:go_paks}
+  \end{minipage}
+
+\end{figure}
+
+\section{Conclusions and Future Directions}
+
+In this work, we set out to determine whether the Gene Ontology can be used as a novel predictor of protein function. We developed and validated two different approaches. The first, GO-NMF, applies NMF over an adjacency matrix of GO terms and proteins to predict new protein-term pairs. GO-NMF recovers existing pairs in cross-validation, and predicts future pairs in time-stamped studies. Performance of GO-NMF in CAFA3, while not spectacular, suggests that the method provides signal for genuine prospective prediction. The second approach, GO-GID, abstracts protein Gene Ontology terms to produce a protein-protein network, and reasons on it using Global Information Diffusion. Likewise, the method performs reasonably well in cross- and time-stamp validation, and is generally applicable in different contexts, such as predicting kinase targets in the kinase network, or predicting disease-associated genes in the human proteome. GO-GID predictions for P53 association for PAKs and NEK2 are in agreement with experimental data, though the ranking is not as sensitive as we would like.
+
+The limitations of the method are informed by its basic implementation. The method relies squarely on a protein having meaningful annotations in the Gene Ontology in order to make predictions. A protein that is completely orphaned, or is only annotated with a handful of high-level terms, does not have enough features to create useful basis factors in NMF. Likewise a poorly annotated protein will be dropped from the similarity network at the thresholding stage, because it has no high-similarity edges connecting it to the rest of the network. Another limitation of the GO-based method is the lag between the initial discovery of a functional feature, and its incorporation into the Gene Ontology by the human curator. That means GO-based networks will be slightly behind the current ground truth in literature. 
+
+The future direction is two-fold. First, the two models provide a lot of latitude for tuning of hyperparameters. In the NMF model, for example, we deployed basis factor $k=200$, which is in line with other use case of NMF on proteomic-scale data.  However, tuning $k$ for each species to achieve the best granularity during factorization could improve performance. Likewise, in this work, we ignored the fact that decomposition of the matrix in NMF is seeded randomly, so every time the minimization function is solved, the solution is unique. To increase consistency of predictions, we could run multiple decompositions of the same matrix, followed by averaging of the post-compression weights. GID can be similarly tuned. For example, edges in the network graph $G$ do not have to be binary. Rather than threshold, we can simply leave the continuous weights in place, providing more detail to the protein's local topology. Finally, another avenue for improvement is to combine the two models outright: NMF can be applied to the protein-protein network to predict novel edges, while GO-GID can be used to suggest likely protein-term pairs, which can then be included in the adjacency matrix for NMF.
+
+Second, an attractive use case scenario for GO-NMF and GO-GID is to support other approaches. For example, the GO-NMF protein-term matrix can be directly combined with other matrices, such as protein-protein, and protein-drug matrices. Likewise, because GO terms are generally applied not only to proteins, but also to diseases, RNAs, and chemicals, GO-GID too can be used to create and reason on combined protein-RNA-disease-drug networks. Futhermore, predictions made with  GO-NMF and GO-GID can be readily combined with rankings produced by third-party methods. We briefly tested this by combining GO-GID predictions from the kinase cross-validation study with results of the identical experiment conducted on the literature-based Bag-of-Words network used in the NEK2 study \cite{NEK2}. Individual performance of the two individual networks is similar (mean AUC=0.84 for BOW, and 0.85 for GO). However, combining their $f-scores$ into a single output via logistic regression improves performance to AUC=0.89.
+
+To conclude, we have abstracted data in the Gene Ontology into representations suitable for reasoning, and combined them in a novel manner with NMF and GID. The product is a complete end-to-end prediction pipeline based entirely on the Gene Ontology. Both of the proposed models have predictive power, and can be readily integrated with other methods.
+
+\chapter[Conclusion]{\LARGE Conclusion}
+\clearpage
+
+In this thesis, we have addressed the problem of function prediction in biology in two different contexts.
+
+In the context of nucleotide analysis, we adapted a powerful sequence analysis tool, the Evolutionary Trace, to accept nucleic acid sequences. We provided a thorough validation of the method in the hammerhead and the bacterial ribosome, and found that ET accurately identifies functional sites in these molecules. We then expanded the analysis to families in Rfam, and found that major hallmarks of ET, the clustering of ET nucleotides and their overlap with functional sites, are a feature general in diverse RNA families. Finally, we have suggested two alignment optimization strategies that improve ET performance in RNA.
+
+The study highlights that evolutionary principals which made ET successful in proteins, translate directly to structured fRNA, and suggest ET can be successfully be applied in other non-proteins contexts like DNA and viruses. As the scientific community's awareness of non-coding elements and their role in human diseases continues to grow, the need for a sequence analysis tool to help guide research will become more pronounced. RNA ET helps advance the field of non-coding RNA and DNA research by addressing this need.
+
+RNA ET does have two significant limitations. First, the main output of ET analysis, ET rank of a nucleotide, is a fairly non-descriptive measure. While ET ranks nucleotides in relation to each other, it does not provide any contextual information on its own. ET does not show whether a nucleotide is strucutrally or catalytically-important, whether it is involved in a non-canonical pairing, or whether it is part of a structural motif such as a pseudoknot, a sarcin-ricin loop, or a g-bulge (for review of RNA strucutral motifs see \cite{Miao2017}. ET provides a hypothesis in form of predicted evolutionary importance, but it is up to the user to contextualize ET ranks within their molecule of interest.
+
+One way to make ET predictions more nuanced is to incorporate nucleotide co-evolution into ET ranking schema. Co-evolution has a long history of application in RNA structure modeling \cite{Levitt1969, fox_woese_5s_nature1975, Westhof1990}, where it has been used to discriminate between paired and unpaired bases. The basic premise is straight-forward: given two nucleotides that form a Watson-Crick (WC) pair in the structure, a mutation in one nucleotide should be followed by a compensatory mutation in the other if the structural contact is to be maintained. Thus, the two paired nucleotides co-evolve, and the history of their co-evolution can be quantified using formal metrics such as Mutual Information \cite{Freyhult2005}.
+
+Implementing co-evolution scoring for RNA would give us a second measure by which to discriminate bases. For example, two ET nucleotides that display a high degree of co-evolution are most likely paired in the structure. Examining the identity of the bases would further tell us whether the two bases are part of a canonical WC pair, likely to be found in a double-stranded stem, or a non-canonical interaction such as between bases in two kissing loops. Likewise, high-ranked ET nucleotides that does not display strong co-evolution could be assumed to be unpaired, and located in bulges or single-stranded loops. Incorporating co-evolution into RNA ET would not be techinically challenging, as this has already been done for protein ET in form of pair-interaction (pi)ET \cite{Wilkins2013}.
+
+The second limitation of ET is its requirement for homologous sequences. Little can be done to circumvent this requirement, as Evolutionary Trace is essentially a survey of sequence changes encoded in homologue divergence. This requirement precludes analysis of the most nascent RNA families (notably, lncRNAs), because their evolutionary history is too shallow. Here, researchers would be best served by the traditional tools of RNA analysis, such as structure prediction based on free-energy minimization or chemical probing \cite{cao2011}.
+
+In the second part of this work, we contribute to the field of protein function prediction. Rather than model sequences or structures to predict function, we addressed the problem from a Big Data perspective. We recognized that a key biological database, the Gene Ontology, has become so information rich, that directly reasoning on it to predict novel discoveries became a viable option. The well-ordered nature of the Gene Ontology and the human expertise encoded in the term hierarchy made GO even more attractive for prediction. To test this proposition, we designed two novel models for data extraction and reasoning on GO, and showed that both models have predictive power.
+
+While being a useful display of GO utility beyond simple categorization, the overarching significance of the work lies in addressing the fundamental problem of function annotation in biology. Because there are tens of thousands of proteins and a similarly high number of possible functions, it is practically unfeasible to test all possible protein-function pairs experimentally. GO-NMF and GO-GID provide a simple and scalable approach for interrogating protein-term and protein-function associations computationally. By suggesting likely protein-function associations, GO-NMF and GO-GID can help guide experimental inquiry in protein research.
+
+The main limitation of both models presented here, not surprisingly, is their reliance on pre-existing GO annotations. A novel protein that is completely unannotated cannot be incorporated into either model, because it has no GO terms. A protein that is sparsely annotated suffers from the same problem. The few high-level terms do not provide enough specificity to generate meaningful predictions about low-level functions. Proteins best suited for GO-based prediction are reasonably well-annotated proteins, for which our models can "fill in the gaps" by suggesting functions not obvious from manual assessment. However, for the entirely novel proteins, structural or sequence homology analysis remains the most tenable way to infer likely function. This conclusion is supported by the somewhat unimpressive performance of GO-derived models in the CAFA challenge, though it remains to be seen which methods scored best. Accordingly, we see the application of our GO-derived models primarily as a source of additional input features into a meta approach that incorporates multiple analyses into a single prediction. In this context, our models are valuable because they provide a laconic encapsulation of the information presented in the Gene Ontology.
+
+
+
+
+
+\bibliography{/Users/ilyanovikov/Documents/DropboxCopyJun2/DISSERTATION/bibliography2}
+\bibliographystyle{unsrt}
+\end{document}
